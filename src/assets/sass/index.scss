@@ -1,0 +1,152 @@
+@mixin five-column-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.pitch {
+    display: grid;
+    grid-template-rows: 10%, 10%, 65%, 10%, 5%;
+    background-image: url(./images/football-field-svgrepo-com.svg);
+    background-repeat: no-repeat;
+    margin: 50px 0;
+    min-height: 50vh;
+    width: 80vw;
+
+    .goalkeeper {
+        grid-row: 1/1;
+        @include five-column-grid;
+    }
+
+    .defence {
+        grid-row: 2/1;
+        @include five-column-grid;
+        grid-template-rows: repeat(2, 1fr);
+
+        [data-formation-position=rb] {
+            grid-row: 2;
+            grid-column: 1;
+        }
+        [data-formation-position=lcb] {
+            grid-row: 1;
+            grid-column: 2;
+        }
+        [data-formation-position=cb] {
+            grid-row: 1;
+            grid-column: 3;
+        }
+
+        [data-formation-position=rcb] {
+            grid-row: 1;
+            grid-column: 4;
+        }
+        [data-formation-position=rb] {
+            grid-row: 2;
+            grid-column: 5;
+        }
+    }
+
+    .midfield {
+        grid-row: 3/1;
+        @include five-column-grid;
+        grid-template-rows: repeat(3, 1fr);
+
+
+        [data-formation-position=ldm] {
+            grid-row: 1;
+            grid-column: 2;
+        }
+
+        [data-formation-position=cdm] {
+            grid-row: 1;
+            grid-column: 3;
+        }
+
+        [data-formation-position=rdm] {
+            grid-row: 1;
+            grid-column: 4;
+        }
+
+        [data-formation-position=lwb], [data-formation-position=lm] {
+            grid-row: 2;
+            grid-column: 1;
+        }
+
+        [data-formation-position=lcm] {
+            grid-row: 2;
+            grid-column: 2;
+        }
+
+        [data-formation-position=cm] {
+            grid-row: 2;
+            grid-column: 3;
+        }
+
+        [data-formation-position=rcm] {
+            grid-row: 2;
+            grid-column: 4;
+        }
+
+        [data-formation-position=rwb], [data-formation-position=rm] {
+            grid-row: 2;
+            grid-column: 5;
+        }
+
+        [data-formation-position=lw] {
+            grid-row: 3;
+            grid-column: 1;
+        }
+        
+        [data-formation-position=lam] {
+            grid-row: 3;
+            grid-column: 2;
+        }
+
+        [data-formation-position=cam] {
+            grid-row: 3;
+            grid-column: 3;
+        }
+
+        [data-formation-position=ram] {
+            grid-row: 3;
+            grid-column: 4;
+        }
+
+        [data-formation-position=rw] {
+            grid-row: 3;
+            grid-column: 5;
+        }
+
+    }
+
+    .attack {
+        grid-row: 4/1;
+        @include five-column-grid;
+        // grid-template-rows: repeat(2, 1fr);
+        
+        [data-formation-position=lf] {
+            // grid-row: 2;
+            grid-column: 1;
+        }
+
+        [data-formation-position=ls] {
+            // grid-row: 2;
+            grid-column: 2;
+        }
+
+        [data-formation-position=cf] {
+            // grid-row: 2;
+            grid-column: 3;
+        }
+
+        [data-formation-position=rs] {
+            // grid-row: 2;
+            grid-column: 4;
+        }
+
+        [data-formation-position=rf] {
+            // grid-row: 2;
+            grid-column: 5;
+        }
+
+    }
+}
