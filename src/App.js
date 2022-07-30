@@ -10,35 +10,66 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
+
       formation: '4-5-1',
-      formationPositions: {},
+      // formationPositions: {},
+
+      choosePlayer: false,
+      selectedPlayer: null,
       selectedPosition: null,
     }
+
+    this.changeFormation = this.changeFormation.bind(this)
+
   }
 
-  
-  setFormationPositions() {
+
+  // setFormationPositions() {
+
+  //   if ( ! Formations.hasOwnProperty( this.state.formation )) {
+  //     console.log('oops')
+  //     return
+  //   }
+
+  //   console.log('here')
+  //   this.setState({
+  //     formationPositions: Formations[this.state.formation].formationPositions
+  //   })
+
+  // }
+
+
+  getFormationPositions() {
 
     if ( ! Formations.hasOwnProperty( this.state.formation )) {
+      return {}
+    }
+
+    return Formations[this.state.formation].formationPositions
+
+  }
+
+
+
+  changeFormation(e) {
+
+    if( ! e.target.value ) {
       return
     }
 
     this.setState({
-      formationPositions: Formations[this.state.formation].formationPositions
+      formation: e.target.value
     })
 
-  }
-
-
-
-  changeFormation(){
+    // this.setFormationPositions()
 
   }
 
 
 
   componentDidMount() {
-    this.setFormationPositions();
+    // this.setFormationPositions();
   }
 
 
@@ -49,12 +80,14 @@ class App extends React.Component {
         Hello
 
         <FootballPitch 
-          formationPositions={this.state.formationPositions} 
+          formationPositions={ this.getFormationPositions() } 
         />
 
-        {/* <InfoCard 
-          onFormationChange={this.changeFormation}
-        /> */}
+        <InfoCard
+          formations={ Object.keys(Formations) }
+          choosePlayer={ this.state.choosePlayer }
+          changeFormation={ this.changeFormation }
+        />
 
       </div>
     );

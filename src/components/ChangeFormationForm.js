@@ -1,22 +1,25 @@
 import React from "react";
 
 class ChangeFormationForm extends React.Component {
-    constructor(props) {
-        props();
-        
-        const state = {
-            team: null
-        }
-    }
 
     render() {
         return (
             <div>
-                <form onSubmit={ () => {} }>
-                    <div className="form-group">
+                <form>
+                    <div>
                         <label>Formation:</label>
-                        <select name="formation" value={this.state.team} onChange={this.setState({...this.state, team: this.state.team})} required>
-                            <options></options>
+                        <select name="formation" onChange={ (e) => this.props.changeFormation(e) } required>
+
+                            <option value=''>Change the formation</option>
+
+                            { 
+                                this.props.formations.map((formation, index) =>
+
+                                    <option key={index} value={formation}>{formation}</option>
+
+                                )
+                            }
+
                         </select>
                     </div>
                 </form>
