@@ -18,7 +18,7 @@
         // goalkeeping
 
         [data-formation-position=gk] {
-            grid-row: 1;
+            grid-row: 8;
             grid-column: 3;
         }
 
@@ -26,124 +26,124 @@
         // defence
 
         [data-formation-position=lb] {
-            grid-row: 2;
-            grid-column: 5;
+            grid-row: 7;
+            grid-column: 1;
         }
 
         [data-formation-position=lcb] {
-            grid-row: 2;
-            grid-column: 4;
+            grid-row: 7;
+            grid-column: 2;
         }
 
         [data-formation-position=cb] {
-            grid-row: 2;
+            grid-row: 7;
             grid-column: 3;
         }
 
         [data-formation-position=rcb] {
-            grid-row: 2;
-            grid-column: 2;
+            grid-row: 7;
+            grid-column: 4;
         }
 
         [data-formation-position=rb] {
-            grid-row: 2;
-            grid-column: 1;
+            grid-row: 7;
+            grid-column: 5;
         }
 
 
         // midfield
 
         [data-formation-position=ldm] {
-            grid-row: 3;
-            grid-column: 4;
+            grid-row: 6;
+            grid-column: 2;
         }
 
         [data-formation-position=cdm] {
-            grid-row: 3;
+            grid-row: 6;
             grid-column: 3;
         }
 
         [data-formation-position=rdm] {
-            grid-row: 3;
-            grid-column: 2;
-        }
-
-        [data-formation-position=lwb], [data-formation-position=lm] {
-            grid-row: 4;
-            grid-column: 5;
-        }
-
-        [data-formation-position=lcm] {
-            grid-row: 4;
+            grid-row: 6;
             grid-column: 4;
         }
 
+        [data-formation-position=lwb], [data-formation-position=lm] {
+            grid-row: 5;
+            grid-column: 1;
+        }
+
+        [data-formation-position=lcm] {
+            grid-row: 5;
+            grid-column: 2;
+        }
+
         [data-formation-position=cm] {
-            grid-row: 4;
+            grid-row: 5;
             grid-column: 3;
         }
 
         [data-formation-position=rcm] {
-            grid-row: 4;
-            grid-column: 2;
-        }
-
-        [data-formation-position=rwb], [data-formation-position=rm] {
-            grid-row: 4;
-            grid-column: 1;
-        }
-
-        [data-formation-position=lw] {
-            grid-row: 5;
-            grid-column: 5;
-        }
-        
-        [data-formation-position=lam] {
             grid-row: 5;
             grid-column: 4;
         }
 
-        [data-formation-position=cam] {
+        [data-formation-position=rwb], [data-formation-position=rm] {
             grid-row: 5;
+            grid-column: 5;
+        }
+
+        [data-formation-position=lw] {
+            grid-row: 4;
+            grid-column: 1;
+        }
+        
+        [data-formation-position=lam] {
+            grid-row: 4;
+            grid-column: 2;
+        }
+
+        [data-formation-position=cam] {
+            grid-row: 4;
             grid-column: 3;
         }
 
         [data-formation-position=ram] {
-            grid-row: 5;
-            grid-column: 2;
+            grid-row: 4;
+            grid-column: 4;
         }
 
         [data-formation-position=rw] {
-            grid-row: 5;
-            grid-column: 1;
+            grid-row: 4;
+            grid-column: 5;
         }
 
 
         // attack
             
         [data-formation-position=lf] {
-            grid-row: 6;
-            grid-column: 5;
+            grid-row: 3;
+            grid-column: 1;
         }
 
         [data-formation-position=ls] {
-            grid-row: 6;
-            grid-column: 4;
+            grid-row: 3;
+            grid-column: 2;
         }
 
         [data-formation-position=cf] {
-            grid-row: 6;
+            grid-row: 3;
             grid-column: 3;
         }
 
         [data-formation-position=rs] {
-            grid-row: 6;
-            grid-column: 2;
+            grid-row: 3;
+            grid-column: 4;
         }
 
         [data-formation-position=rf] {
-            grid-row: 6;
-            grid-column: 1;
+            grid-row: 3;
+            grid-column: 5;
         }
 
     }
