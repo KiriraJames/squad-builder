@@ -8,7 +8,7 @@ class ChangeFormationForm extends React.Component {
                 <form>
                     <div>
                         <label>Formation:</label>
-                        <select name="formation" onChange={ (e) => this.props.changeFormation(e) } required>
+                        <select name="formation" onChange={ this.props.changeFormation } required>
 
                             <option value=''>Change the formation</option>
 
