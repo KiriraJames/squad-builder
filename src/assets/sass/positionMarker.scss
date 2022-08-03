@@ -14,6 +14,7 @@
         background-color: lightblue;
         height: 80px;
         width: 80px;
+        cursor: pointer;
 
         .circle .active {
             border: 4px solid #fff;
@@ -35,6 +36,19 @@
         align-items: center;
         justify-content: center;
         text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    &:hover, &.active {
+        
+        transform: scale(1.25);
+        transition: scale 5s ease;
+
+        .circle {
+            box-shadow: 0 0 10px #fff;
+            transition: box-shadow 0.5s ease;
+        }
+
     }
 
 

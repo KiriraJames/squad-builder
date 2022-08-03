@@ -14,7 +14,13 @@ class FootballPitch extends React.Component {
 
         return [...Array(11)].map((value, index) => 
                     
-            <PositionMarker key={index} number={index + 1} formationPosition={ this.props.formationPositions[index + 1] } />
+            <PositionMarker 
+                key={index}
+                number={index + 1}
+                formationPosition={ this.props.formationPositions[index + 1] }
+                isActive={ this.props.selectedPosition  === (index + 1) }
+                toggleInfoCard={ this.props.toggleInfoCard }
+            />
 
         )
 

@@ -10,9 +10,9 @@ class InfoCard extends React.Component {
 
                 <ChangeFormationForm formations={this.props.formations} changeFormation={this.props.changeFormation}/>
 
-                { this.props.selectedPlayer && !this.props.choosePlayer && <PlayerInfo />}
+                { this.props.selectedPlayer && this.props.selectedPosition && !this.props.choosePlayer && <PlayerInfo selectedPlayer={ this.props.selectedPlayer } />}
 
-                { this.props.choosePlayer && <ChoosePlayerForm /> }
+                {/* { this.props.selectedPosition && this.props.choosePlayer && <ChoosePlayerForm /> } */}
 
             </div>
         )

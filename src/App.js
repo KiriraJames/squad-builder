@@ -12,6 +12,7 @@ class App extends React.Component {
     this.state = {
       loading: true,
 
+      squad: {},
       formation: '4-5-1',
       // formationPositions: {},
 
@@ -21,6 +22,7 @@ class App extends React.Component {
     }
 
     this.changeFormation = this.changeFormation.bind(this)
+    this.toggleInfoCard = this.toggleInfoCard.bind(this)
 
   }
 
@@ -66,6 +68,37 @@ class App extends React.Component {
 
   }
 
+  toggleInfoCard(squad_number) {
+
+    if(squad_number === this.state.selectedPosition) {
+      
+      this.setState({
+        choosePlayer: false,
+        selectedPosition: null
+      })
+
+      return
+
+    }
+
+    if( this.state.squad[squad_number] ) {
+
+      this.setState({
+        choosePlayer: false,
+        selectedPlayer: this.state.squad[squad_number]
+      })
+
+    } else {
+
+      this.setState({
+        choosePlayer: true,
+        selectedPosition: squad_number
+      })
+
+    }
+
+  }
+
 
 
   componentDidMount() {
@@ -81,11 +114,15 @@ class App extends React.Component {
 
         <FootballPitch 
           formationPositions={ this.getFormationPositions() } 
+          toggleInfoCard={ this.toggleInfoCard }
+          selectedPosition={ this.state.selectedPosition }
         />
 
         <InfoCard
           formations={ Object.keys(Formations) }
           choosePlayer={ this.state.choosePlayer }
+          selectedPlayer={ this.state.selectedPlayer }
+          selectedPosition={ this.state.selectedPosition }
           changeFormation={ this.changeFormation }
         />
 
