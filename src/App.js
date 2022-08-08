@@ -119,7 +119,7 @@ class App extends React.Component {
         />
 
         <InfoCard
-          formations={ Object.keys(Formations) }
+          formations={ Formations }
           choosePlayer={ this.state.choosePlayer }
           selectedPlayer={ this.state.selectedPlayer }
           selectedPosition={ this.state.selectedPosition }

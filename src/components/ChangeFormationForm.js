@@ -13,9 +13,13 @@ class ChangeFormationForm extends React.Component {
                             <option value=''>Change the formation</option>
 
                             { 
-                                this.props.formations.map((formation, index) =>
+                                Object.keys(this.props.formations).map((key, index) =>
 
-                                    <option key={index} value={formation}>{formation}</option>
+                                    <option key={key} value={key}>
+
+                                        {this.props.formations[key]['name']}
+
+                                    </option>
 
                                 )
                             }
