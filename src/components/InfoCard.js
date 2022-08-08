@@ -6,15 +6,20 @@ import ChangeFormationForm from './ChangeFormationForm'
 class InfoCard extends React.Component {
     render() {
         return (
-            <div className="info-card">
+            <div className="info-card-wrapper">
 
-                <ChangeFormationForm formations={this.props.formations} changeFormation={this.props.changeFormation}/>
+                <div className="info-card">
 
-                { this.props.selectedPlayer && this.props.selectedPosition && !this.props.choosePlayer && <PlayerInfo selectedPlayer={ this.props.selectedPlayer } />}
+                    <ChangeFormationForm formations={this.props.formations} changeFormation={this.props.changeFormation}/>
 
-                {/* { this.props.selectedPosition && this.props.choosePlayer && <ChoosePlayerForm /> } */}
+                    { !this.props.choosePlayer && this.props.selectedPlayer && <PlayerInfo selectedPlayer={ this.props.selectedPlayer } /> }
+
+                    { this.props.choosePlayer && this.props.selectedPosition && <ChoosePlayerForm selectedPosition={ this.props.selectedPosition } /> }
+
+                </div>
 
             </div>
+            
         )
     }
 }

@@ -1,12 +1,19 @@
 @use './index.scss';
 @use './positionMarker.scss';
+@use './infoCard.scss';
 
 * {
   box-sizing: border-box;
 }
 
+.app {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .form-group {
   display: flex;
+  margin: 5% 0;
 }
 
 // @keyframes App-logo-spin {

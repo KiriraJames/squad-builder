@@ -4,7 +4,7 @@ class ChangeFormationForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="change-formation-form">
                 <form>
                     <div>
                         <label>Formation:</label>

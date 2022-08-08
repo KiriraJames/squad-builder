@@ -1,0 +1,21 @@
+.info-card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-card {
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    padding: 5%;
+    margin: 0 2%;
+    border-radius: 15px;
+}
+
+.change-formation-form {
+    padding: 5%;
+}
+
+.choose-player-form {
+    padding: 5%;
+}
