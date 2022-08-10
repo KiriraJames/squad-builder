@@ -6,6 +6,11 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "apicache": "^1.6.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-rate-limit": "^6.5.1",
+    "node-fetch": "^2.6.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -14,10 +19,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run build && node './proxy/main.js'",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "npm run build && nodemon './proxy/main.js'"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +45,9 @@
   },
   "resolutions": {
     "react-devtools-core": "4.14.0"
+  },
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
