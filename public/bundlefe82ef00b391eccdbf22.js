@@ -263,10 +263,35 @@ var App = /*#__PURE__*/function (_React$Component) {
       return fetchTeamData;
     }()
   }, {
+    key: "playerHasAlreadyBeenSelected",
+    value: function playerHasAlreadyBeenSelected(player_id) {
+      var duplicate_player = Object.values(this.state.squad).filter(function (already_selected_player) {
+        return already_selected_player !== null;
+      }).find(function (already_selected_player) {
+        return already_selected_player.id === player_id;
+      });
+
+      if (duplicate_player) {
+        return true;
+      } else {
+        return false;
+      } // OR
+      // return true && duplicate_player
+      // https://developer.mozilla.org/en-US/docs/Glossary/Truthy#the_logical_and_operator
+
+    }
+  }, {
     key: "selectPlayer",
     value: function selectPlayer(team_squad_index) {
       var number = this.state.selectedPosition['squad_number'];
       var player = this.state.selectedTeam.squad[team_squad_index];
+
+      if (this.playerHasAlreadyBeenSelected(player.id)) {
+        "";
+        alert("Player has already been selected !");
+        return;
+      }
+
       player['age'] = (0,date_fns__WEBPACK_IMPORTED_MODULE_5__["default"])(new Date(), (0,date_fns__WEBPACK_IMPORTED_MODULE_6__["default"])(player.dateOfBirth, 'yyyy-MM-dd', new Date()));
       player['team'] = {
         id: this.state.selectedTeam.id,
@@ -280,13 +305,28 @@ var App = /*#__PURE__*/function (_React$Component) {
       this.setState(function (prevState) {
         return {
           squad: _objectSpread(_objectSpread({}, prevState.squad), {}, _defineProperty({}, number, player)),
-          choosePlayer: false
+          choosePlayer: false,
+          selectedTeam: null,
+          selectedPosition: null
         };
       });
     }
   }, {
     key: "removePlayer",
-    value: function removePlayer() {}
+    value: function removePlayer() {
+      if (!this.state.selectedPosition) {
+        return;
+      }
+
+      var squad_number = this.state.selectedPosition.squad_number;
+      this.setState(function (prevState) {
+        return {
+          squad: _objectSpread(_objectSpread({}, prevState.squad), {}, _defineProperty({}, squad_number, null)),
+          selectedPlayer: null,
+          choosePlayer: true
+        };
+      });
+    }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -40053,4 +40093,4 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
 
 /******/ })()
 ;
-//# sourceMappingURL=bundleb3ae7c64e20ed5b948c4.js.map
+//# sourceMappingURL=bundlefe82ef00b391eccdbf22.js.map

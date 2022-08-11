@@ -133,11 +133,34 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
+  playerHasAlreadyBeenSelected(player_id){
+    let duplicate_player = Object.values(this.state.squad)
+                            .filter(already_selected_player => already_selected_player !== null)
+                            .find(already_selected_player => already_selected_player.id === player_id);
+
+    if ( duplicate_player ) {
+      return true 
+    } else {
+      return false
+    }
+
+    // OR
+    // return true && duplicate_player
+    // https://developer.mozilla.org/en-US/docs/Glossary/Truthy#the_logical_and_operator
+
+  }
+
   selectPlayer(team_squad_index) {
 
     let number = this.state.selectedPosition['squad_number']
 
     let player = this.state.selectedTeam.squad[team_squad_index]
+
+    if( this.playerHasAlreadyBeenSelected(player.id) ) {``
+      alert("Player has already been selected !");
+      return
+    }
+
     player['age'] = differenceInYears( new Date(), parse(player.dateOfBirth, 'yyyy-MM-dd', new Date()) )
     player['team'] = {
       id: this.state.selectedTeam.id,
@@ -153,12 +176,26 @@ class App extends React.Component {
     this.setState(prevState => ({
         squad: { ...prevState.squad, [number]: player },
         choosePlayer: false,
+        selectedTeam: null,
+        selectedPosition: null
       })
     )
 
   }
 
-  removePlayer(){}
+  removePlayer(){
+    if ( ! this.state.selectedPosition ) {
+      return
+    }
+
+    let squad_number = this.state.selectedPosition.squad_number
+    this.setState(prevState => ({
+        squad: { ...prevState.squad, [squad_number]: null },
+        selectedPlayer: null,
+        choosePlayer: true
+      })
+    )
+  }
 
 
   componentDidMount() {
