@@ -4,7 +4,10 @@ class PositionMarker extends React.Component {
 
     getPlayerDisplayName(full_name) {
         let names_array = full_name.split(' ');
-        names_array.shift();
+        
+        if (names_array[1]) {
+            names_array.shift();
+        }
         
         let display_name = names_array.join(' ');
         return display_name;

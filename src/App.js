@@ -1,3 +1,5 @@
+import { parse, differenceInYears } from 'date-fns';
+
 import React from 'react';
 import FootballPitch from './components/FootballPitch'
 import InfoCard from './components/InfoCard'
@@ -29,6 +31,7 @@ class App extends React.Component {
     this.fetchTeamData = this.fetchTeamData.bind(this)
     this.toggleInfoCard = this.toggleInfoCard.bind(this)
     this.selectPlayer = this.selectPlayer.bind(this)
+    this.removePlayer = this.removePlayer.bind(this)
 
   }
 
@@ -56,14 +59,18 @@ class App extends React.Component {
 
   toggleInfoCard(position) {
 
-    if(position === this.state.selectedPosition) {
-      
-      this.setState({
-        choosePlayer: false,
-        selectedPosition: null
-      })
+    if( this.state.selectedPosition !== null ) {
 
-      return
+      if( position['squad_number'] === this.state.selectedPosition['squad_number'] && position['formation_position'] === this.state.selectedPosition['formation_position'] ) {
+      
+        this.setState({
+          choosePlayer: false,
+          selectedPosition: null,
+          selectedPlayer: null
+        })
+
+        return
+      }
 
     }
     
@@ -72,7 +79,8 @@ class App extends React.Component {
 
       this.setState({
         choosePlayer: false,
-        selectedPlayer: this.state.squad[ position['squad_number'] ]
+        selectedPlayer: this.state.squad[ position['squad_number'] ],
+        selectedPosition: position
       })
 
     } else {
@@ -130,14 +138,27 @@ class App extends React.Component {
     let number = this.state.selectedPosition['squad_number']
 
     let player = this.state.selectedTeam.squad[team_squad_index]
+    player['age'] = differenceInYears( new Date(), parse(player.dateOfBirth, 'yyyy-MM-dd', new Date()) )
+    player['team'] = {
+      id: this.state.selectedTeam.id,
+      tla: this.state.selectedTeam.tla,
+      shortname: this.state.selectedTeam.shortname,
+      name: this.state.selectedTeam.name,
+      crest: this.state.selectedTeam.crest,
+      area: this.state.selectedTeam.area.name,
+      clubColors: this.state.selectedTeam.clubColors,
+    }
 
 
     this.setState(prevState => ({
-        squad: { ...prevState.squad, [number]: player }
+        squad: { ...prevState.squad, [number]: player },
+        choosePlayer: false,
       })
     )
 
   }
+
+  removePlayer(){}
 
 
   componentDidMount() {
@@ -170,6 +191,7 @@ class App extends React.Component {
           fetchTeams={ this.fetchTeams }
           fetchTeamData={ this.fetchTeamData }
           selectPlayer={ this.selectPlayer }
+          removePlayer={ this.removePlayer }
         />
 
       </div>
