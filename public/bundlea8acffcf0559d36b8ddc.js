@@ -20,6 +20,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_sass_App_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/sass/App.scss */ "./src/assets/sass/App.scss");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -65,7 +71,19 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       loading: true,
-      squad: {},
+      squad: {
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+        7: null,
+        8: null,
+        9: null,
+        10: null,
+        11: null
+      },
       formation: '4-5-1',
       leagues: [],
       teams: [],
@@ -75,7 +93,10 @@ var App = /*#__PURE__*/function (_React$Component) {
       selectedTeam: null
     };
     _this.changeFormation = _this.changeFormation.bind(_assertThisInitialized(_this));
+    _this.fetchTeams = _this.fetchTeams.bind(_assertThisInitialized(_this));
+    _this.fetchTeamData = _this.fetchTeamData.bind(_assertThisInitialized(_this));
     _this.toggleInfoCard = _this.toggleInfoCard.bind(_assertThisInitialized(_this));
+    _this.selectPlayer = _this.selectPlayer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -101,8 +122,8 @@ var App = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "toggleInfoCard",
-    value: function toggleInfoCard(squad_number) {
-      if (squad_number === this.state.selectedPosition) {
+    value: function toggleInfoCard(position) {
+      if (position === this.state.selectedPosition) {
         this.setState({
           choosePlayer: false,
           selectedPosition: null
@@ -110,15 +131,15 @@ var App = /*#__PURE__*/function (_React$Component) {
         return;
       }
 
-      if (this.state.squad[squad_number]) {
+      if (this.state.squad[position['squad_number']]) {
         this.setState({
           choosePlayer: false,
-          selectedPlayer: this.state.squad[squad_number]
+          selectedPlayer: this.state.squad[position['squad_number']]
         });
       } else {
         this.setState({
           choosePlayer: true,
-          selectedPosition: squad_number
+          selectedPosition: position
         });
       }
     }
@@ -126,6 +147,8 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "fetchLeagues",
     value: function () {
       var _fetchLeagues = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var _this2 = this;
+
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -136,7 +159,9 @@ var App = /*#__PURE__*/function (_React$Component) {
                 }).then(function (response) {
                   return response.json();
                 }).then(function (data) {
-                  return console.log(data);
+                  _this2.setState({
+                    leagues: data
+                  });
                 })["catch"](function (error) {
                   return console.log(error);
                 });
@@ -158,18 +183,22 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "fetchTeams",
     value: function () {
-      var _fetchTeams = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var _fetchTeams = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+        var _this3 = this;
+
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return fetch('/api/league/{id}/teams', {
+                return fetch('/api/league/' + e.target.value + '/teams', {
                   mode: 'cors'
                 }).then(function (response) {
                   return response.json();
                 }).then(function (data) {
-                  return console.log(data);
+                  _this3.setState({
+                    teams: data
+                  });
                 })["catch"](function (error) {
                   return console.log(error);
                 });
@@ -182,7 +211,7 @@ var App = /*#__PURE__*/function (_React$Component) {
         }, _callee2);
       }));
 
-      function fetchTeams() {
+      function fetchTeams(_x) {
         return _fetchTeams.apply(this, arguments);
       }
 
@@ -191,18 +220,22 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "fetchTeamData",
     value: function () {
-      var _fetchTeamData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var _fetchTeamData = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(e) {
+        var _this4 = this;
+
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return fetch('/api/teams/{id}', {
+                return fetch('/api/teams/' + e.target.value, {
                   mode: 'cors'
                 }).then(function (response) {
                   return response.json();
                 }).then(function (data) {
-                  return console.log(data);
+                  _this4.setState({
+                    selectedTeam: data
+                  });
                 })["catch"](function (error) {
                   return console.log(error);
                 });
@@ -215,12 +248,23 @@ var App = /*#__PURE__*/function (_React$Component) {
         }, _callee3);
       }));
 
-      function fetchTeamData() {
+      function fetchTeamData(_x2) {
         return _fetchTeamData.apply(this, arguments);
       }
 
       return fetchTeamData;
     }()
+  }, {
+    key: "selectPlayer",
+    value: function selectPlayer(team_squad_index) {
+      var number = this.state.selectedPosition['squad_number'];
+      var player = this.state.selectedTeam.squad[team_squad_index];
+      this.setState(function (prevState) {
+        return {
+          squad: _objectSpread(_objectSpread({}, prevState.squad), {}, _defineProperty({}, number, player))
+        };
+      });
+    }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -232,16 +276,22 @@ var App = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "app"
       }, "Hello", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_FootballPitch__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        squad: this.state.squad,
+        selectedPosition: this.state.selectedPosition,
         formationPositions: this.getFormationPositions(),
-        toggleInfoCard: this.toggleInfoCard,
-        selectedPosition: this.state.selectedPosition
+        toggleInfoCard: this.toggleInfoCard
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_InfoCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
         formations: _helpers_formations__WEBPACK_IMPORTED_MODULE_3__["default"],
         leagues: this.state.leagues,
+        teams: this.state.teams,
         choosePlayer: this.state.choosePlayer,
         selectedPlayer: this.state.selectedPlayer,
+        selectedTeam: this.state.selectedTeam,
         selectedPosition: this.state.selectedPosition,
-        changeFormation: this.changeFormation
+        changeFormation: this.changeFormation,
+        fetchTeams: this.fetchTeams,
+        fetchTeamData: this.fetchTeamData,
+        selectPlayer: this.selectPlayer
       }));
     }
   }]);
@@ -370,35 +420,64 @@ var ChoosePlayerForm = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(ChoosePlayerForm);
 
-  function ChoosePlayerForm() {
+  function ChoosePlayerForm(props) {
+    var _this;
+
     _classCallCheck(this, ChoosePlayerForm);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.selectPlayerRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef();
+    return _this;
   }
 
   _createClass(ChoosePlayerForm, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "choose-player-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Choose a Player: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "form-group"
-      }, "Position: ", this.props.selectedPosition), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "League:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Position: ", "".concat(this.props.selectedPosition['squad_number'], " ( ").concat(this.props.selectedPosition['formation_position'].toUpperCase(), " )"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "League:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         name: "league",
-        onChange: this.props.changeLeague,
+        onChange: this.props.fetchTeams,
         required: true
-      }, this.props.leagues.map(function (league) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+        value: ""
+      }, "Select a league"), this.props.leagues.map(function (league) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
           key: league.id,
           value: league.id
         }, league.name);
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Team:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         name: "team",
+        onChange: this.props.fetchTeamData,
         required: true
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Player:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+        value: ""
+      }, "Select a Team"), this.props.teams.length > 1 && this.props.teams.map(function (team) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+          key: team.id,
+          value: team.id
+        }, team.name);
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Player:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         name: "player",
+        ref: this.selectPlayerRef,
         required: true
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", null))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+        value: ""
+      }, "Select a Player"), this.props.selectedTeam && this.props.selectedTeam.squad.map(function (player, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+          key: player.id,
+          value: index
+        }, player.name);
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        type: "submit",
+        onClick: function onClick(e) {
+          return _this2.props.selectPlayer(_this2.selectPlayerRef.current.value, e);
+        }
+      }, "Save")));
     }
   }]);
 
@@ -423,18 +502,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _PositionMarker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PositionMarker */ "./src/components/PositionMarker.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -477,17 +544,15 @@ var FootballPitch = /*#__PURE__*/function (_React$Component) {
 
       if (Object.keys(this.props.formationPositions).length !== 11) {
         return;
-      } // for ( let i = 0; i < this.refs.length; i++ ) {
-      //     position.setAttribute('data-formation-position', this.state.formationPositions[i])
-      // }
+      }
 
-
-      return _toConsumableArray(Array(11)).map(function (value, index) {
+      return Object.keys(this.props.squad).map(function (squad_number, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_PositionMarker__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: index,
-          number: index + 1,
-          formationPosition: _this.props.formationPositions[index + 1],
-          isActive: _this.props.selectedPosition === index + 1,
+          number: squad_number,
+          player: _this.props.squad[squad_number],
+          formationPosition: _this.props.formationPositions[squad_number],
+          isActive: _this.props.selectedPosition && _this.props.selectedPosition['squad_number'] === squad_number,
           toggleInfoCard: _this.props.toggleInfoCard
         });
       });
@@ -576,8 +641,13 @@ var InfoCard = /*#__PURE__*/function (_React$Component) {
       }), !this.props.choosePlayer && this.props.selectedPlayer && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_PlayerInfo__WEBPACK_IMPORTED_MODULE_1__["default"], {
         selectedPlayer: this.props.selectedPlayer
       }), this.props.choosePlayer && this.props.selectedPosition && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ChoosePlayerForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        leagues: this.props.leagues,
+        teams: this.props.teams,
+        selectedTeam: this.props.selectedTeam,
         selectedPosition: this.props.selectedPosition,
-        leagues: this.props.leagues
+        fetchTeams: this.props.fetchTeams,
+        fetchTeamData: this.props.fetchTeamData,
+        selectPlayer: this.props.selectPlayer
       })));
     }
   }]);
@@ -706,13 +776,16 @@ var PositionMarker = /*#__PURE__*/function (_React$Component) {
         className: 'position-marker' + (this.props.isActive ? ' active' : ''),
         "data-formation-position": this.props.formationPosition,
         onClick: function onClick(e) {
-          return _this.props.toggleInfoCard(_this.props.number, e);
+          return _this.props.toggleInfoCard({
+            squad_number: _this.props.number,
+            formation_position: _this.props.formationPosition
+          }, e);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "circle"
       }, this.props.number), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "name-tag"
-      }, this.props.formationPosition));
+      }, this.props.player ? this.props.player.name.split(' ')[1] : this.props.formationPosition));
     }
   }]);
 
@@ -810,7 +883,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".football-pitch {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-repeat: no-repeat;\n  width: 60vw;\n  height: 80vh;\n  margin: 50px;\n  min-height: 50vh;\n}\n.football-pitch .formation-grid {\n  display: grid;\n  grid-template-rows: repeat(8, 1fr);\n  grid-template-columns: repeat(5, 1fr);\n  padding: 8%;\n  width: 100%;\n  height: 100%;\n}\n.football-pitch .formation-grid [data-formation-position=gk] {\n  grid-row: 8;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=lb] {\n  grid-row: 7;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lcb] {\n  grid-row: 7;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cb] {\n  grid-row: 7;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rcb] {\n  grid-row: 7;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rb] {\n  grid-row: 7;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=ldm] {\n  grid-row: 6;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cdm] {\n  grid-row: 6;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rdm] {\n  grid-row: 6;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=lwb], .football-pitch .formation-grid [data-formation-position=lm] {\n  grid-row: 5;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lcm] {\n  grid-row: 5;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cm] {\n  grid-row: 5;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rcm] {\n  grid-row: 5;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rwb], .football-pitch .formation-grid [data-formation-position=rm] {\n  grid-row: 5;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=lw] {\n  grid-row: 4;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lam] {\n  grid-row: 4;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cam] {\n  grid-row: 4;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=ram] {\n  grid-row: 4;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rw] {\n  grid-row: 4;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=lf] {\n  grid-row: 3;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=ls] {\n  grid-row: 3;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cf] {\n  grid-row: 3;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rs] {\n  grid-row: 3;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rf] {\n  grid-row: 3;\n  grid-column: 5;\n}\n\n.position-marker {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n.position-marker .circle {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 1.5rem;\n  border-radius: 9999px;\n  color: white;\n  background-color: lightblue;\n  height: 80px;\n  width: 80px;\n  cursor: pointer;\n}\n.position-marker .circle .circle .active {\n  border: 4px solid #fff;\n}\n.position-marker .name-tag {\n  background-color: aqua;\n  margin: 5px 0 10px;\n  padding: 1% 2%;\n  min-width: 50%;\n  min-height: 25%;\n  overflow: hidden;\n  word-break: break-word;\n  border-radius: 15px;\n  text-align: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  text-transform: uppercase;\n  cursor: pointer;\n}\n.position-marker:hover, .position-marker.active {\n  transform: scale(1.25);\n  transition: scale 5s ease;\n}\n.position-marker:hover .circle, .position-marker.active .circle {\n  box-shadow: 0 0 10px #fff;\n  transition: box-shadow 0.5s ease;\n}\n\n.info-card-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.info-card {\n  background: rgba(0, 0, 0, 0.65);\n  color: #fff;\n  padding: 5%;\n  margin: 0 2%;\n  border-radius: 15px;\n}\n\n.change-formation-form {\n  padding: 5%;\n}\n\n.choose-player-form {\n  padding: 5%;\n}\n\n* {\n  box-sizing: border-box;\n}\n\n.app {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.form-group {\n  display: flex;\n  margin: 5% 0;\n}", "",{"version":3,"sources":["webpack://./src/assets/sass/index.scss","webpack://./src/assets/sass/App.scss","webpack://./src/assets/sass/positionMarker.scss","webpack://./src/assets/sass/infoCard.scss"],"names":[],"mappings":"AAAA;EACI,yDAAA;EACA,4BAAA;EACA,WAAA;EACA,YAAA;EACA,YAAA;EACA,gBAAA;ACCJ;ADCI;EACI,aAAA;EACA,kCAAA;EACA,qCAAA;EACA,WAAA;EACA,WAAA;EACA,YAAA;ACCR;ADIQ;EACI,WAAA;EACA,cAAA;ACFZ;ADQQ;EACI,WAAA;EACA,cAAA;ACNZ;ADSQ;EACI,WAAA;EACA,cAAA;ACPZ;ADUQ;EACI,WAAA;EACA,cAAA;ACRZ;ADWQ;EACI,WAAA;EACA,cAAA;ACTZ;ADYQ;EACI,WAAA;EACA,cAAA;ACVZ;ADgBQ;EACI,WAAA;EACA,cAAA;ACdZ;ADiBQ;EACI,WAAA;EACA,cAAA;ACfZ;ADkBQ;EACI,WAAA;EACA,cAAA;AChBZ;ADmBQ;EACI,WAAA;EACA,cAAA;ACjBZ;ADoBQ;EACI,WAAA;EACA,cAAA;AClBZ;ADqBQ;EACI,WAAA;EACA,cAAA;ACnBZ;ADsBQ;EACI,WAAA;EACA,cAAA;ACpBZ;ADuBQ;EACI,WAAA;EACA,cAAA;ACrBZ;ADwBQ;EACI,WAAA;EACA,cAAA;ACtBZ;ADyBQ;EACI,WAAA;EACA,cAAA;ACvBZ;AD0BQ;EACI,WAAA;EACA,cAAA;ACxBZ;AD2BQ;EACI,WAAA;EACA,cAAA;ACzBZ;AD4BQ;EACI,WAAA;EACA,cAAA;AC1BZ;ADgCQ;EACI,WAAA;EACA,cAAA;AC9BZ;ADiCQ;EACI,WAAA;EACA,cAAA;AC/BZ;ADkCQ;EACI,WAAA;EACA,cAAA;AChCZ;ADmCQ;EACI,WAAA;EACA,cAAA;ACjCZ;ADoCQ;EACI,WAAA;EACA,cAAA;AClCZ;;AC/GA;EACI,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,uBAAA;ADkHJ;AChHI;EACI,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,iBAAA;EACA,qBAAA;EACA,YAAA;EACA,2BAAA;EACA,YAAA;EACA,WAAA;EACA,eAAA;ADkHR;AChHQ;EACI,sBAAA;ADkHZ;AC7GI;EACI,sBAAA;EACA,kBAAA;EACA,cAAA;EACA,cAAA;EACA,eAAA;EACA,gBAAA;EACA,sBAAA;EACA,mBAAA;EACA,kBAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,yBAAA;EACA,eAAA;AD+GR;AC5GI;EAEI,sBAAA;EACA,yBAAA;AD6GR;AC3GQ;EACI,yBAAA;EACA,gCAAA;AD6GZ;;AE7JA;EACI,aAAA;EACA,mBAAA;EACA,uBAAA;AFgKJ;;AE7JA;EACI,+BAAA;EACA,WAAA;EACA,WAAA;EACA,YAAA;EACA,mBAAA;AFgKJ;;AE7JA;EACI,WAAA;AFgKJ;;AE7JA;EACI,WAAA;AFgKJ;;AA/KA;EACE,sBAAA;AAkLF;;AA/KA;EACE,aAAA;EACA,eAAA;AAkLF;;AA/KA;EACE,aAAA;EACA,YAAA;AAkLF","sourcesContent":[".football-pitch {\n    background-image: url(../images/football-field-svgrepo-com-cropped.svg);\n    background-repeat: no-repeat;\n    width: 60vw;\n    height: 80vh;\n    margin: 50px;\n    min-height: 50vh;\n\n    .formation-grid {\n        display: grid;\n        grid-template-rows: repeat(8, 1fr);\n        grid-template-columns: repeat(5, 1fr);\n        padding: 8%;\n        width: 100%;\n        height: 100%;\n        \n\n        // goalkeeping\n\n        [data-formation-position=gk] {\n            grid-row: 8;\n            grid-column: 3;\n        }\n\n\n        // defence\n\n        [data-formation-position=lb] {\n            grid-row: 7;\n            grid-column: 1;\n        }\n\n        [data-formation-position=lcb] {\n            grid-row: 7;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cb] {\n            grid-row: 7;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rcb] {\n            grid-row: 7;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rb] {\n            grid-row: 7;\n            grid-column: 5;\n        }\n\n\n        // midfield\n\n        [data-formation-position=ldm] {\n            grid-row: 6;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cdm] {\n            grid-row: 6;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rdm] {\n            grid-row: 6;\n            grid-column: 4;\n        }\n\n        [data-formation-position=lwb], [data-formation-position=lm] {\n            grid-row: 5;\n            grid-column: 1;\n        }\n\n        [data-formation-position=lcm] {\n            grid-row: 5;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cm] {\n            grid-row: 5;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rcm] {\n            grid-row: 5;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rwb], [data-formation-position=rm] {\n            grid-row: 5;\n            grid-column: 5;\n        }\n\n        [data-formation-position=lw] {\n            grid-row: 4;\n            grid-column: 1;\n        }\n        \n        [data-formation-position=lam] {\n            grid-row: 4;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cam] {\n            grid-row: 4;\n            grid-column: 3;\n        }\n\n        [data-formation-position=ram] {\n            grid-row: 4;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rw] {\n            grid-row: 4;\n            grid-column: 5;\n        }\n\n\n        // attack\n            \n        [data-formation-position=lf] {\n            grid-row: 3;\n            grid-column: 1;\n        }\n\n        [data-formation-position=ls] {\n            grid-row: 3;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cf] {\n            grid-row: 3;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rs] {\n            grid-row: 3;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rf] {\n            grid-row: 3;\n            grid-column: 5;\n        }\n\n    }\n}","@use './index.scss';\n@use './positionMarker.scss';\n@use './infoCard.scss';\n\n* {\n  box-sizing: border-box;\n}\n\n.app {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.form-group {\n  display: flex;\n  margin: 5% 0;\n}\n\n// @keyframes App-logo-spin {\n//   from {\n//     transform: rotate(0deg);\n//   }\n//   to {\n//     transform: rotate(360deg);\n//   }\n// }\n",".position-marker {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n\n    .circle {\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        font-size: 1.5rem;\n        border-radius: 9999px;\n        color: white;\n        background-color: lightblue;\n        height: 80px;\n        width: 80px;\n        cursor: pointer;\n\n        .circle .active {\n            border: 4px solid #fff;\n        }\n\n    }\n\n    .name-tag {\n        background-color: aqua;\n        margin: 5px 0 10px;\n        padding: 1% 2%;\n        min-width: 50%;\n        min-height: 25%;\n        overflow: hidden;\n        word-break: break-word;\n        border-radius: 15px;\n        text-align: center;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        text-transform: uppercase;\n        cursor: pointer;\n    }\n\n    &:hover, &.active {\n        \n        transform: scale(1.25);\n        transition: scale 5s ease;\n\n        .circle {\n            box-shadow: 0 0 10px #fff;\n            transition: box-shadow 0.5s ease;\n        }\n\n    }\n\n\n}",".info-card-wrapper {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.info-card {\n    background: rgba(0, 0, 0, 0.65);\n    color: #fff;\n    padding: 5%;\n    margin: 0 2%;\n    border-radius: 15px;\n}\n\n.change-formation-form {\n    padding: 5%;\n}\n\n.choose-player-form {\n    padding: 5%;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".football-pitch {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-repeat: no-repeat;\n  width: 60vw;\n  height: 80vh;\n  margin: 50px;\n  min-height: 50vh;\n}\n.football-pitch .formation-grid {\n  display: grid;\n  grid-template-rows: repeat(8, 1fr);\n  grid-template-columns: repeat(5, 1fr);\n  padding: 8%;\n  width: 100%;\n  height: 100%;\n}\n.football-pitch .formation-grid [data-formation-position=gk] {\n  grid-row: 8;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=lb] {\n  grid-row: 7;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lcb] {\n  grid-row: 7;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cb] {\n  grid-row: 7;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rcb] {\n  grid-row: 7;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rb] {\n  grid-row: 7;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=ldm] {\n  grid-row: 6;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cdm] {\n  grid-row: 6;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rdm] {\n  grid-row: 6;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=lwb], .football-pitch .formation-grid [data-formation-position=lm] {\n  grid-row: 5;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lcm] {\n  grid-row: 5;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cm] {\n  grid-row: 5;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rcm] {\n  grid-row: 5;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rwb], .football-pitch .formation-grid [data-formation-position=rm] {\n  grid-row: 5;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=lw] {\n  grid-row: 4;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lam] {\n  grid-row: 4;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cam] {\n  grid-row: 4;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=ram] {\n  grid-row: 4;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rw] {\n  grid-row: 4;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=lf] {\n  grid-row: 3;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=ls] {\n  grid-row: 3;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cf] {\n  grid-row: 3;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rs] {\n  grid-row: 3;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rf] {\n  grid-row: 3;\n  grid-column: 5;\n}\n\n.position-marker {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n.position-marker .circle {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 1.5rem;\n  border-radius: 9999px;\n  color: white;\n  background-color: lightblue;\n  height: 80px;\n  width: 80px;\n  cursor: pointer;\n}\n.position-marker .circle .circle .active {\n  border: 4px solid #fff;\n}\n.position-marker .name-tag {\n  background-color: aqua;\n  margin: 5px 0 10px;\n  padding: 1% 5%;\n  min-width: 50%;\n  min-height: 25%;\n  overflow: hidden;\n  word-break: break-word;\n  border-radius: 15px;\n  text-align: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  text-transform: uppercase;\n  cursor: pointer;\n}\n.position-marker:hover, .position-marker.active {\n  transform: scale(1.25);\n  transition: scale 5s ease;\n}\n.position-marker:hover .circle, .position-marker.active .circle {\n  box-shadow: 0 0 10px #fff;\n  transition: box-shadow 0.5s ease;\n}\n\n.info-card-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.info-card {\n  background: rgba(0, 0, 0, 0.65);\n  color: #fff;\n  padding: 5%;\n  margin: 0 2%;\n  border-radius: 15px;\n}\n\n.change-formation-form {\n  padding: 5%;\n}\n\n.choose-player-form {\n  padding: 5%;\n}\n\n* {\n  box-sizing: border-box;\n}\n\n.app {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.form-group {\n  display: flex;\n  margin: 5% 0;\n}", "",{"version":3,"sources":["webpack://./src/assets/sass/index.scss","webpack://./src/assets/sass/App.scss","webpack://./src/assets/sass/positionMarker.scss","webpack://./src/assets/sass/infoCard.scss"],"names":[],"mappings":"AAAA;EACI,yDAAA;EACA,4BAAA;EACA,WAAA;EACA,YAAA;EACA,YAAA;EACA,gBAAA;ACCJ;ADCI;EACI,aAAA;EACA,kCAAA;EACA,qCAAA;EACA,WAAA;EACA,WAAA;EACA,YAAA;ACCR;ADIQ;EACI,WAAA;EACA,cAAA;ACFZ;ADQQ;EACI,WAAA;EACA,cAAA;ACNZ;ADSQ;EACI,WAAA;EACA,cAAA;ACPZ;ADUQ;EACI,WAAA;EACA,cAAA;ACRZ;ADWQ;EACI,WAAA;EACA,cAAA;ACTZ;ADYQ;EACI,WAAA;EACA,cAAA;ACVZ;ADgBQ;EACI,WAAA;EACA,cAAA;ACdZ;ADiBQ;EACI,WAAA;EACA,cAAA;ACfZ;ADkBQ;EACI,WAAA;EACA,cAAA;AChBZ;ADmBQ;EACI,WAAA;EACA,cAAA;ACjBZ;ADoBQ;EACI,WAAA;EACA,cAAA;AClBZ;ADqBQ;EACI,WAAA;EACA,cAAA;ACnBZ;ADsBQ;EACI,WAAA;EACA,cAAA;ACpBZ;ADuBQ;EACI,WAAA;EACA,cAAA;ACrBZ;ADwBQ;EACI,WAAA;EACA,cAAA;ACtBZ;ADyBQ;EACI,WAAA;EACA,cAAA;ACvBZ;AD0BQ;EACI,WAAA;EACA,cAAA;ACxBZ;AD2BQ;EACI,WAAA;EACA,cAAA;ACzBZ;AD4BQ;EACI,WAAA;EACA,cAAA;AC1BZ;ADgCQ;EACI,WAAA;EACA,cAAA;AC9BZ;ADiCQ;EACI,WAAA;EACA,cAAA;AC/BZ;ADkCQ;EACI,WAAA;EACA,cAAA;AChCZ;ADmCQ;EACI,WAAA;EACA,cAAA;ACjCZ;ADoCQ;EACI,WAAA;EACA,cAAA;AClCZ;;AC/GA;EACI,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,uBAAA;ADkHJ;AChHI;EACI,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,iBAAA;EACA,qBAAA;EACA,YAAA;EACA,2BAAA;EACA,YAAA;EACA,WAAA;EACA,eAAA;ADkHR;AChHQ;EACI,sBAAA;ADkHZ;AC7GI;EACI,sBAAA;EACA,kBAAA;EACA,cAAA;EACA,cAAA;EACA,eAAA;EACA,gBAAA;EACA,sBAAA;EACA,mBAAA;EACA,kBAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,yBAAA;EACA,eAAA;AD+GR;AC5GI;EAEI,sBAAA;EACA,yBAAA;AD6GR;AC3GQ;EACI,yBAAA;EACA,gCAAA;AD6GZ;;AE7JA;EACI,aAAA;EACA,mBAAA;EACA,uBAAA;AFgKJ;;AE7JA;EACI,+BAAA;EACA,WAAA;EACA,WAAA;EACA,YAAA;EACA,mBAAA;AFgKJ;;AE7JA;EACI,WAAA;AFgKJ;;AE7JA;EACI,WAAA;AFgKJ;;AA/KA;EACE,sBAAA;AAkLF;;AA/KA;EACE,aAAA;EACA,eAAA;AAkLF;;AA/KA;EACE,aAAA;EACA,YAAA;AAkLF","sourcesContent":[".football-pitch {\n    background-image: url(../images/football-field-svgrepo-com-cropped.svg);\n    background-repeat: no-repeat;\n    width: 60vw;\n    height: 80vh;\n    margin: 50px;\n    min-height: 50vh;\n\n    .formation-grid {\n        display: grid;\n        grid-template-rows: repeat(8, 1fr);\n        grid-template-columns: repeat(5, 1fr);\n        padding: 8%;\n        width: 100%;\n        height: 100%;\n        \n\n        // goalkeeping\n\n        [data-formation-position=gk] {\n            grid-row: 8;\n            grid-column: 3;\n        }\n\n\n        // defence\n\n        [data-formation-position=lb] {\n            grid-row: 7;\n            grid-column: 1;\n        }\n\n        [data-formation-position=lcb] {\n            grid-row: 7;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cb] {\n            grid-row: 7;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rcb] {\n            grid-row: 7;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rb] {\n            grid-row: 7;\n            grid-column: 5;\n        }\n\n\n        // midfield\n\n        [data-formation-position=ldm] {\n            grid-row: 6;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cdm] {\n            grid-row: 6;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rdm] {\n            grid-row: 6;\n            grid-column: 4;\n        }\n\n        [data-formation-position=lwb], [data-formation-position=lm] {\n            grid-row: 5;\n            grid-column: 1;\n        }\n\n        [data-formation-position=lcm] {\n            grid-row: 5;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cm] {\n            grid-row: 5;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rcm] {\n            grid-row: 5;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rwb], [data-formation-position=rm] {\n            grid-row: 5;\n            grid-column: 5;\n        }\n\n        [data-formation-position=lw] {\n            grid-row: 4;\n            grid-column: 1;\n        }\n        \n        [data-formation-position=lam] {\n            grid-row: 4;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cam] {\n            grid-row: 4;\n            grid-column: 3;\n        }\n\n        [data-formation-position=ram] {\n            grid-row: 4;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rw] {\n            grid-row: 4;\n            grid-column: 5;\n        }\n\n\n        // attack\n            \n        [data-formation-position=lf] {\n            grid-row: 3;\n            grid-column: 1;\n        }\n\n        [data-formation-position=ls] {\n            grid-row: 3;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cf] {\n            grid-row: 3;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rs] {\n            grid-row: 3;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rf] {\n            grid-row: 3;\n            grid-column: 5;\n        }\n\n    }\n}","@use './index.scss';\n@use './positionMarker.scss';\n@use './infoCard.scss';\n\n* {\n  box-sizing: border-box;\n}\n\n.app {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.form-group {\n  display: flex;\n  margin: 5% 0;\n}\n\n// @keyframes App-logo-spin {\n//   from {\n//     transform: rotate(0deg);\n//   }\n//   to {\n//     transform: rotate(360deg);\n//   }\n// }\n",".position-marker {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n\n    .circle {\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        font-size: 1.5rem;\n        border-radius: 9999px;\n        color: white;\n        background-color: lightblue;\n        height: 80px;\n        width: 80px;\n        cursor: pointer;\n\n        .circle .active {\n            border: 4px solid #fff;\n        }\n\n    }\n\n    .name-tag {\n        background-color: aqua;\n        margin: 5px 0 10px;\n        padding: 1% 5%;\n        min-width: 50%;\n        min-height: 25%;\n        overflow: hidden;\n        word-break: break-word;\n        border-radius: 15px;\n        text-align: center;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        text-transform: uppercase;\n        cursor: pointer;\n    }\n\n    &:hover, &.active {\n        \n        transform: scale(1.25);\n        transition: scale 5s ease;\n\n        .circle {\n            box-shadow: 0 0 10px #fff;\n            transition: box-shadow 0.5s ease;\n        }\n\n    }\n\n\n}",".info-card-wrapper {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.info-card {\n    background: rgba(0, 0, 0, 0.65);\n    color: #fff;\n    padding: 5%;\n    margin: 0 2%;\n    border-radius: 15px;\n}\n\n.change-formation-form {\n    padding: 5%;\n}\n\n.choose-player-form {\n    padding: 5%;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34905,4 +34978,4 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle6625bdcdba9322066ea1.js.map
+//# sourceMappingURL=bundlea8acffcf0559d36b8ddc.js.map

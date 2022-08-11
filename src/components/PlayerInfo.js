@@ -1,14 +1,6 @@
 import React from "react";
 
 class PlayerInfo extends React.Component {
-    constructor(props) {
-        props();
-        
-        const state = {
-            team: null
-        }
-    }
-
     render() {
         return (
             <div>

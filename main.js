@@ -28,6 +28,9 @@ app.get('/api/leagues', cache('5 minutes'), async(req, res) => {
         })
         .then(response => response.json())
         .then(data => {
+            
+            console.log(data)
+
             let leagues = []
             let competitions = data.competitions
             leagues = competitions.filter( competition => competition.type === 'LEAGUE' )
@@ -53,7 +56,12 @@ app.get('/api/league/:leagueId/teams', cache('5 minutes'), async(req, res) => {
     })
     .then(response => response.json())
     .then(data => {
-        res.status(200).json(data);
+
+        console.log(data)
+
+        let teams = data.teams
+
+        res.status(200).json(teams);
     })
     .catch(error => {
         res.status(500).json({error})
@@ -73,6 +81,8 @@ app.get('/api/teams/:teamId', cache('5 minutes'), async(req, res) => {
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data)
+        
         res.status(200).json(data);
     })
     .catch(error => {

@@ -8,17 +8,14 @@ class FootballPitch extends React.Component {
             return
         }
 
-        // for ( let i = 0; i < this.refs.length; i++ ) {
-        //     position.setAttribute('data-formation-position', this.state.formationPositions[i])
-        // }
-
-        return [...Array(11)].map((value, index) => 
+        return Object.keys(this.props.squad).map((squad_number, index) => 
                     
             <PositionMarker 
-                key={index}
-                number={index + 1}
-                formationPosition={ this.props.formationPositions[index + 1] }
-                isActive={ this.props.selectedPosition  === (index + 1) }
+                key={ index }
+                number={ squad_number }
+                player={ this.props.squad[squad_number] }
+                formationPosition={ this.props.formationPositions[squad_number] }
+                isActive={ this.props.selectedPosition && this.props.selectedPosition['squad_number']  === squad_number }
                 toggleInfoCard={ this.props.toggleInfoCard }
             />
 
