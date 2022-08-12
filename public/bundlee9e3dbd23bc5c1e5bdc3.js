@@ -12,14 +12,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/differenceInYears/index.js");
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/parse/index.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/differenceInYears/index.js");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/esm/parse/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_FootballPitch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/FootballPitch */ "./src/components/FootballPitch.js");
-/* harmony import */ var _components_InfoCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/InfoCard */ "./src/components/InfoCard.js");
-/* harmony import */ var _helpers_formations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers/formations */ "./src/helpers/formations.js");
-/* harmony import */ var _assets_sass_App_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/sass/App.scss */ "./src/assets/sass/App.scss");
+/* harmony import */ var _components_LoadingScreen__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/LoadingScreen */ "./src/components/LoadingScreen.js");
+/* harmony import */ var _components_FootballPitch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/FootballPitch */ "./src/components/FootballPitch.js");
+/* harmony import */ var _components_InfoCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/InfoCard */ "./src/components/InfoCard.js");
+/* harmony import */ var _helpers_formations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers/formations */ "./src/helpers/formations.js");
+/* harmony import */ var _assets_sass_App_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/sass/App.scss */ "./src/assets/sass/App.scss");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -53,6 +54,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -107,11 +109,11 @@ var App = /*#__PURE__*/function (_React$Component) {
   _createClass(App, [{
     key: "getFormationPositions",
     value: function getFormationPositions() {
-      if (!_helpers_formations__WEBPACK_IMPORTED_MODULE_3__["default"].hasOwnProperty(this.state.formation)) {
+      if (!_helpers_formations__WEBPACK_IMPORTED_MODULE_4__["default"].hasOwnProperty(this.state.formation)) {
         return {};
       }
 
-      return _helpers_formations__WEBPACK_IMPORTED_MODULE_3__["default"][this.state.formation].formationPositions;
+      return _helpers_formations__WEBPACK_IMPORTED_MODULE_4__["default"][this.state.formation].formationPositions;
     }
   }, {
     key: "changeFormation",
@@ -198,7 +200,10 @@ var App = /*#__PURE__*/function (_React$Component) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                this.setState({
+                  loading: true
+                });
+                _context2.next = 3;
                 return fetch('/api/league/' + e.target.value + '/teams', {
                   mode: 'cors'
                 }).then(function (response) {
@@ -209,14 +214,18 @@ var App = /*#__PURE__*/function (_React$Component) {
                   });
                 })["catch"](function (error) {
                   return console.log(error);
+                }).then(function () {
+                  return _this3.setState({
+                    loading: false
+                  });
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
+        }, _callee2, this);
       }));
 
       function fetchTeams(_x) {
@@ -235,7 +244,10 @@ var App = /*#__PURE__*/function (_React$Component) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                this.setState({
+                  loading: true
+                });
+                _context3.next = 3;
                 return fetch('/api/teams/' + e.target.value, {
                   mode: 'cors'
                 }).then(function (response) {
@@ -246,14 +258,18 @@ var App = /*#__PURE__*/function (_React$Component) {
                   });
                 })["catch"](function (error) {
                   return console.log(error);
+                }).then(function () {
+                  return _this4.setState({
+                    loading: false
+                  });
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3);
+        }, _callee3, this);
       }));
 
       function fetchTeamData(_x2) {
@@ -283,16 +299,21 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "selectPlayer",
     value: function selectPlayer(team_squad_index) {
+      this.setState({
+        loading: true
+      });
       var number = this.state.selectedPosition['squad_number'];
       var player = this.state.selectedTeam.squad[team_squad_index];
 
       if (this.playerHasAlreadyBeenSelected(player.id)) {
-        "";
+        this.setState({
+          loading: false
+        });
         alert("Player has already been selected !");
         return;
       }
 
-      player['age'] = (0,date_fns__WEBPACK_IMPORTED_MODULE_5__["default"])(new Date(), (0,date_fns__WEBPACK_IMPORTED_MODULE_6__["default"])(player.dateOfBirth, 'yyyy-MM-dd', new Date()));
+      player['age'] = (0,date_fns__WEBPACK_IMPORTED_MODULE_6__["default"])(new Date(), (0,date_fns__WEBPACK_IMPORTED_MODULE_7__["default"])(player.dateOfBirth, 'yyyy-MM-dd', new Date()));
       player['team'] = {
         id: this.state.selectedTeam.id,
         tla: this.state.selectedTeam.tla,
@@ -307,7 +328,8 @@ var App = /*#__PURE__*/function (_React$Component) {
           squad: _objectSpread(_objectSpread({}, prevState.squad), {}, _defineProperty({}, number, player)),
           choosePlayer: false,
           selectedTeam: null,
-          selectedPosition: null
+          selectedPosition: null,
+          loading: false
         };
       });
     }
@@ -318,32 +340,42 @@ var App = /*#__PURE__*/function (_React$Component) {
         return;
       }
 
+      this.setState({
+        loading: true
+      });
       var squad_number = this.state.selectedPosition.squad_number;
       this.setState(function (prevState) {
         return {
           squad: _objectSpread(_objectSpread({}, prevState.squad), {}, _defineProperty({}, squad_number, null)),
           selectedPlayer: null,
-          choosePlayer: true
+          choosePlayer: true,
+          loading: false
         };
       });
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.fetchLeagues();
+      var _this5 = this;
+
+      this.fetchLeagues().then(function () {
+        return _this5.setState({
+          loading: false
+        });
+      });
     }
   }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "app"
-      }, "Hello", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_FootballPitch__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, "Hello", this.state.loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_LoadingScreen__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_FootballPitch__WEBPACK_IMPORTED_MODULE_2__["default"], {
         squad: this.state.squad,
         selectedPosition: this.state.selectedPosition,
         formationPositions: this.getFormationPositions(),
         toggleInfoCard: this.toggleInfoCard
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_InfoCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        formations: _helpers_formations__WEBPACK_IMPORTED_MODULE_3__["default"],
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_InfoCard__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        formations: _helpers_formations__WEBPACK_IMPORTED_MODULE_4__["default"],
         leagues: this.state.leagues,
         teams: this.state.teams,
         choosePlayer: this.state.choosePlayer,
@@ -724,6 +756,79 @@ var InfoCard = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./src/components/LoadingScreen.js":
+/*!*****************************************!*\
+  !*** ./src/components/LoadingScreen.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _assets_images_football_svgrepo_com_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/images/football-svgrepo-com.svg */ "./src/assets/images/football-svgrepo-com.svg");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var LoadingScreen = /*#__PURE__*/function (_React$Component) {
+  _inherits(LoadingScreen, _React$Component);
+
+  var _super = _createSuper(LoadingScreen);
+
+  function LoadingScreen() {
+    _classCallCheck(this, LoadingScreen);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(LoadingScreen, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "overlay"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "loading-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "loading-wrapper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "loading-svg",
+        src: _assets_images_football_svgrepo_com_svg__WEBPACK_IMPORTED_MODULE_1__,
+        alt: "..."
+      }), "Loading")));
+    }
+  }]);
+
+  return LoadingScreen;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoadingScreen);
+
+/***/ }),
+
 /***/ "./src/components/PlayerInfo.js":
 /*!**************************************!*\
   !*** ./src/components/PlayerInfo.js ***!
@@ -963,7 +1068,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".football-pitch {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-repeat: no-repeat;\n  width: 100%;\n  height: 53vh;\n  margin: 50px 0;\n  min-height: 50vh;\n  overflow: hidden;\n}\n@media screen and (min-width: 768px) {\n  .football-pitch {\n    width: 60vw;\n    height: 60vh;\n    margin: 50px;\n  }\n}\n@media screen and (min-width: 1024px) {\n  .football-pitch {\n    height: 80vh;\n  }\n}\n.football-pitch .formation-grid {\n  display: grid;\n  grid-template-rows: repeat(8, minmax(0, auto));\n  grid-template-columns: repeat(5, minmax(0, auto));\n  padding: 8%;\n  width: 100%;\n  height: 100%;\n}\n.football-pitch .formation-grid [data-formation-position=gk] {\n  grid-row: 8;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=lb] {\n  grid-row: 7;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lcb] {\n  grid-row: 7;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cb] {\n  grid-row: 7;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rcb] {\n  grid-row: 7;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rb] {\n  grid-row: 7;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=ldm] {\n  grid-row: 6;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cdm] {\n  grid-row: 6;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rdm] {\n  grid-row: 6;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=lwb], .football-pitch .formation-grid [data-formation-position=lm] {\n  grid-row: 5;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lcm] {\n  grid-row: 5;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cm] {\n  grid-row: 5;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rcm] {\n  grid-row: 5;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rwb], .football-pitch .formation-grid [data-formation-position=rm] {\n  grid-row: 5;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=lw] {\n  grid-row: 4;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lam] {\n  grid-row: 4;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cam] {\n  grid-row: 4;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=ram] {\n  grid-row: 4;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rw] {\n  grid-row: 4;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=lf] {\n  grid-row: 3;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=ls] {\n  grid-row: 3;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cf] {\n  grid-row: 3;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rs] {\n  grid-row: 3;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rf] {\n  grid-row: 3;\n  grid-column: 5;\n}\n\n.position-marker {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: 0.8em;\n  align-self: flex-start;\n}\n.position-marker .circle {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 1rem;\n  border-radius: 9999px;\n  color: white;\n  background-color: lightblue;\n  height: 45px;\n  width: 45px;\n  cursor: pointer;\n}\n.position-marker .circle .circle .active {\n  border: 4px solid #fff;\n}\n@media screen and (min-width: 768px) {\n  .position-marker .circle {\n    height: 60px;\n    width: 60px;\n    font-size: 1.5em;\n  }\n}\n@media screen and (min-width: 1024px) {\n  .position-marker .circle {\n    height: 80px;\n    width: 80px;\n    font-size: 2em;\n  }\n}\n.position-marker .name-tag {\n  background-color: aqua;\n  margin: 5px 0 10px;\n  padding: 1% 6%;\n  min-width: 50%;\n  min-height: 25%;\n  overflow: scroll;\n  border-radius: 15px;\n  text-align: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n}\n.position-marker.filled {\n  overflow: hidden;\n}\n.position-marker.filled .name-tag {\n  max-width: 90%;\n  justify-content: start;\n  font-size: 0.6em;\n  margin-bottom: 0;\n}\n.position-marker:hover, .position-marker.active {\n  transform: scale(1.25);\n  transition: scale 5s ease;\n}\n.position-marker:hover .circle, .position-marker.active .circle {\n  box-shadow: 0 0 10px #fff;\n  transition: box-shadow 0.5s ease;\n}\n\n.info-card-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.info-card {\n  background: rgba(0, 0, 0, 0.65);\n  color: #fff;\n  padding: 5%;\n  margin: 0 2%;\n  border-radius: 15px;\n}\n\n.change-formation-form {\n  padding: 5%;\n}\n\n.choose-player-form {\n  padding: 5%;\n}\n\n* {\n  box-sizing: border-box;\n}\n\n.app {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  overflow: hidden;\n}\n\n.form-group {\n  display: flex;\n  margin: 5% 0;\n}", "",{"version":3,"sources":["webpack://./src/assets/sass/index.scss","webpack://./src/assets/sass/App.scss","webpack://./src/assets/sass/positionMarker.scss","webpack://./src/assets/sass/infoCard.scss"],"names":[],"mappings":"AAAA;EACI,yDAAA;EACA,4BAAA;EACA,WAAA;EACA,YAAA;EACA,cAAA;EACA,gBAAA;EACA,gBAAA;ACCJ;ADCI;EATJ;IAUQ,WAAA;IACA,YAAA;IACA,YAAA;ECEN;AACF;ADAI;EAfJ;IAgBQ,YAAA;ECGN;AACF;ADDI;EACI,aAAA;EACA,8CAAA;EACA,iDAAA;EACA,WAAA;EACA,WAAA;EACA,YAAA;ACGR;ADEQ;EACI,WAAA;EACA,cAAA;ACAZ;ADMQ;EACI,WAAA;EACA,cAAA;ACJZ;ADOQ;EACI,WAAA;EACA,cAAA;ACLZ;ADQQ;EACI,WAAA;EACA,cAAA;ACNZ;ADSQ;EACI,WAAA;EACA,cAAA;ACPZ;ADUQ;EACI,WAAA;EACA,cAAA;ACRZ;ADcQ;EACI,WAAA;EACA,cAAA;ACZZ;ADeQ;EACI,WAAA;EACA,cAAA;ACbZ;ADgBQ;EACI,WAAA;EACA,cAAA;ACdZ;ADiBQ;EACI,WAAA;EACA,cAAA;ACfZ;ADkBQ;EACI,WAAA;EACA,cAAA;AChBZ;ADmBQ;EACI,WAAA;EACA,cAAA;ACjBZ;ADoBQ;EACI,WAAA;EACA,cAAA;AClBZ;ADqBQ;EACI,WAAA;EACA,cAAA;ACnBZ;ADsBQ;EACI,WAAA;EACA,cAAA;ACpBZ;ADuBQ;EACI,WAAA;EACA,cAAA;ACrBZ;ADwBQ;EACI,WAAA;EACA,cAAA;ACtBZ;ADyBQ;EACI,WAAA;EACA,cAAA;ACvBZ;AD0BQ;EACI,WAAA;EACA,cAAA;ACxBZ;AD8BQ;EACI,WAAA;EACA,cAAA;AC5BZ;AD+BQ;EACI,WAAA;EACA,cAAA;AC7BZ;ADgCQ;EACI,WAAA;EACA,cAAA;AC9BZ;ADiCQ;EACI,WAAA;EACA,cAAA;AC/BZ;ADkCQ;EACI,WAAA;EACA,cAAA;AChCZ;;AC5HA;EACI,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,uBAAA;EACA,gBAAA;EACA,sBAAA;AD+HJ;AC7HI;EACI,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,eAAA;EACA,qBAAA;EACA,YAAA;EACA,2BAAA;EACA,YAAA;EACA,WAAA;EACA,eAAA;AD+HR;AC7HQ;EACI,sBAAA;AD+HZ;AC5HQ;EAhBJ;IAiBQ,YAAA;IACA,WAAA;IACA,gBAAA;ED+HV;AACF;AC7HQ;EAtBJ;IAuBQ,YAAA;IACA,WAAA;IACA,cAAA;EDgIV;AACF;AC5HI;EACI,sBAAA;EACA,kBAAA;EACA,cAAA;EACA,cAAA;EACA,eAAA;EACA,gBAAA;EACA,mBAAA;EACA,kBAAA;EACA,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,eAAA;AD8HR;AC1HI;EAEI,gBAAA;AD2HR;ACzHQ;EACI,cAAA;EACA,sBAAA;EACA,gBAAA;EACA,gBAAA;AD2HZ;ACtHI;EAEI,sBAAA;EACA,yBAAA;ADuHR;ACrHQ;EACI,yBAAA;EACA,gCAAA;ADuHZ;;AEjMA;EACI,aAAA;EACA,mBAAA;EACA,uBAAA;AFoMJ;;AEjMA;EACI,+BAAA;EACA,WAAA;EACA,WAAA;EACA,YAAA;EACA,mBAAA;AFoMJ;;AEjMA;EACI,WAAA;AFoMJ;;AEjMA;EACI,WAAA;AFoMJ;;AAnNA;EACE,sBAAA;AAsNF;;AAnNA;EACE,aAAA;EACA,eAAA;EACA,WAAA;EACA,gBAAA;AAsNF;;AAnNA;EACE,aAAA;EACA,YAAA;AAsNF","sourcesContent":[".football-pitch {\n    background-image: url(../images/football-field-svgrepo-com-cropped.svg);\n    background-repeat: no-repeat;\n    width: 100%;\n    height: 53vh;\n    margin: 50px 0;\n    min-height: 50vh;\n    overflow: hidden;\n\n    @media screen and (min-width: 768px) {\n        width: 60vw;\n        height: 60vh;\n        margin: 50px;\n    }\n\n    @media screen and (min-width: 1024px) {\n        height: 80vh;\n    }\n\n    .formation-grid {\n        display: grid;\n        grid-template-rows: repeat(8, minmax(0, auto));\n        grid-template-columns: repeat(5, minmax(0, auto));\n        padding: 8%;\n        width: 100%;\n        height: 100%;\n        \n\n        // goalkeeping\n\n        [data-formation-position=gk] {\n            grid-row: 8;\n            grid-column: 3;\n        }\n\n\n        // defence\n\n        [data-formation-position=lb] {\n            grid-row: 7;\n            grid-column: 1;\n        }\n\n        [data-formation-position=lcb] {\n            grid-row: 7;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cb] {\n            grid-row: 7;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rcb] {\n            grid-row: 7;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rb] {\n            grid-row: 7;\n            grid-column: 5;\n        }\n\n\n        // midfield\n\n        [data-formation-position=ldm] {\n            grid-row: 6;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cdm] {\n            grid-row: 6;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rdm] {\n            grid-row: 6;\n            grid-column: 4;\n        }\n\n        [data-formation-position=lwb], [data-formation-position=lm] {\n            grid-row: 5;\n            grid-column: 1;\n        }\n\n        [data-formation-position=lcm] {\n            grid-row: 5;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cm] {\n            grid-row: 5;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rcm] {\n            grid-row: 5;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rwb], [data-formation-position=rm] {\n            grid-row: 5;\n            grid-column: 5;\n        }\n\n        [data-formation-position=lw] {\n            grid-row: 4;\n            grid-column: 1;\n        }\n        \n        [data-formation-position=lam] {\n            grid-row: 4;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cam] {\n            grid-row: 4;\n            grid-column: 3;\n        }\n\n        [data-formation-position=ram] {\n            grid-row: 4;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rw] {\n            grid-row: 4;\n            grid-column: 5;\n        }\n\n\n        // attack\n            \n        [data-formation-position=lf] {\n            grid-row: 3;\n            grid-column: 1;\n        }\n\n        [data-formation-position=ls] {\n            grid-row: 3;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cf] {\n            grid-row: 3;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rs] {\n            grid-row: 3;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rf] {\n            grid-row: 3;\n            grid-column: 5;\n        }\n\n    }\n}","@use './index.scss';\n@use './positionMarker.scss';\n@use './infoCard.scss';\n\n* {\n  box-sizing: border-box;\n}\n\n.app {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  overflow: hidden;\n}\n\n.form-group {\n  display: flex;\n  margin: 5% 0;\n}\n\n// @keyframes App-logo-spin {\n//   from {\n//     transform: rotate(0deg);\n//   }\n//   to {\n//     transform: rotate(360deg);\n//   }\n// }\n",".position-marker {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    font-size: 0.8em;\n    align-self: flex-start;\n\n    .circle {\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        font-size: 1rem;\n        border-radius: 9999px;\n        color: white;\n        background-color: lightblue;\n        height: 45px;\n        width: 45px;\n        cursor: pointer;\n\n        .circle .active {\n            border: 4px solid #fff;\n        }\n\n        @media screen and (min-width: 768px) {\n            height: 60px;\n            width: 60px;\n            font-size: 1.5em;\n        }\n\n        @media screen and (min-width: 1024px) {\n            height: 80px;\n            width: 80px;\n            font-size: 2em;\n        }\n\n    }\n\n    .name-tag {\n        background-color: aqua;\n        margin: 5px 0 10px;\n        padding: 1% 6%;\n        min-width: 50%;\n        min-height: 25%;\n        overflow: scroll;\n        border-radius: 15px;\n        text-align: center;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        cursor: pointer;\n    }\n        \n\n    &.filled {\n\n        overflow: hidden;\n \n        .name-tag {\n            max-width: 90%;\n            justify-content: start;\n            font-size: 0.6em;\n            margin-bottom: 0;\n        }\n\n    }\n\n    &:hover, &.active {\n        \n        transform: scale(1.25);\n        transition: scale 5s ease;\n\n        .circle {\n            box-shadow: 0 0 10px #fff;\n            transition: box-shadow 0.5s ease;\n        }\n\n    }\n\n\n}",".info-card-wrapper {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.info-card {\n    background: rgba(0, 0, 0, 0.65);\n    color: #fff;\n    padding: 5%;\n    margin: 0 2%;\n    border-radius: 15px;\n}\n\n.change-formation-form {\n    padding: 5%;\n}\n\n.choose-player-form {\n    padding: 5%;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".football-pitch {\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-repeat: no-repeat;\n  width: 100%;\n  height: 53vh;\n  margin: 50px 0;\n  min-height: 50vh;\n  overflow: hidden;\n}\n@media screen and (min-width: 768px) {\n  .football-pitch {\n    width: 60vw;\n    height: 60vh;\n    margin: 50px;\n  }\n}\n@media screen and (min-width: 1024px) {\n  .football-pitch {\n    height: 80vh;\n  }\n}\n.football-pitch .formation-grid {\n  display: grid;\n  grid-template-rows: repeat(8, minmax(0, auto));\n  grid-template-columns: repeat(5, minmax(0, auto));\n  padding: 8%;\n  width: 100%;\n  height: 100%;\n}\n.football-pitch .formation-grid [data-formation-position=gk] {\n  grid-row: 8;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=lb] {\n  grid-row: 7;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lcb] {\n  grid-row: 7;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cb] {\n  grid-row: 7;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rcb] {\n  grid-row: 7;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rb] {\n  grid-row: 7;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=ldm] {\n  grid-row: 6;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cdm] {\n  grid-row: 6;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rdm] {\n  grid-row: 6;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=lwb], .football-pitch .formation-grid [data-formation-position=lm] {\n  grid-row: 5;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lcm] {\n  grid-row: 5;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cm] {\n  grid-row: 5;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rcm] {\n  grid-row: 5;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rwb], .football-pitch .formation-grid [data-formation-position=rm] {\n  grid-row: 5;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=lw] {\n  grid-row: 4;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=lam] {\n  grid-row: 4;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cam] {\n  grid-row: 4;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=ram] {\n  grid-row: 4;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rw] {\n  grid-row: 4;\n  grid-column: 5;\n}\n.football-pitch .formation-grid [data-formation-position=lf] {\n  grid-row: 3;\n  grid-column: 1;\n}\n.football-pitch .formation-grid [data-formation-position=ls] {\n  grid-row: 3;\n  grid-column: 2;\n}\n.football-pitch .formation-grid [data-formation-position=cf] {\n  grid-row: 3;\n  grid-column: 3;\n}\n.football-pitch .formation-grid [data-formation-position=rs] {\n  grid-row: 3;\n  grid-column: 4;\n}\n.football-pitch .formation-grid [data-formation-position=rf] {\n  grid-row: 3;\n  grid-column: 5;\n}\n\n.position-marker {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: 0.8em;\n  align-self: flex-start;\n}\n.position-marker .circle {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 1rem;\n  border-radius: 9999px;\n  color: white;\n  background-color: lightblue;\n  height: 45px;\n  width: 45px;\n  cursor: pointer;\n}\n.position-marker .circle .circle .active {\n  border: 4px solid #fff;\n}\n@media screen and (min-width: 768px) {\n  .position-marker .circle {\n    height: 60px;\n    width: 60px;\n    font-size: 1.5em;\n  }\n}\n@media screen and (min-width: 1024px) {\n  .position-marker .circle {\n    height: 80px;\n    width: 80px;\n    font-size: 2em;\n  }\n}\n.position-marker .name-tag {\n  background-color: aqua;\n  margin: 5px 0 10px;\n  padding: 1% 6%;\n  min-width: 50%;\n  min-height: 25%;\n  overflow: scroll;\n  border-radius: 15px;\n  text-align: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n}\n.position-marker.filled {\n  overflow: hidden;\n}\n.position-marker.filled .name-tag {\n  max-width: 90%;\n  justify-content: start;\n  font-size: 0.6em;\n  margin-bottom: 0;\n}\n.position-marker:hover, .position-marker.active {\n  transform: scale(1.25);\n  transition: scale 5s ease;\n}\n.position-marker:hover .circle, .position-marker.active .circle {\n  box-shadow: 0 0 10px #fff;\n  transition: box-shadow 0.5s ease;\n}\n\n.info-card-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.info-card {\n  background: rgba(0, 0, 0, 0.65);\n  color: #fff;\n  padding: 5%;\n  margin: 0 2%;\n  border-radius: 15px;\n}\n\n.change-formation-form {\n  padding: 5%;\n}\n\n.choose-player-form {\n  padding: 5%;\n}\n\n.overlay {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.85);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.overlay .loading-div {\n  background-color: #fff;\n  min-height: 15%;\n  min-width: 25%;\n  display: grid;\n  border-radius: 15px;\n}\n.overlay .loading-div .loading-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 2px solid #000;\n  border-radius: 15px;\n  margin: 2%;\n  flex-wrap: wrap;\n}\n.overlay .loading-svg {\n  margin: 0 5%;\n  animation: rotation 3s infinite linear;\n}\n\n@keyframes rotation {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(359deg);\n  }\n}\n* {\n  box-sizing: border-box;\n}\n\n.app {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  overflow: hidden;\n}\n\n.form-group {\n  display: flex;\n  margin: 5% 0;\n}", "",{"version":3,"sources":["webpack://./src/assets/sass/index.scss","webpack://./src/assets/sass/App.scss","webpack://./src/assets/sass/positionMarker.scss","webpack://./src/assets/sass/infoCard.scss","webpack://./src/assets/sass/loadingScreen.scss"],"names":[],"mappings":"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","sourcesContent":[".football-pitch {\n    background-image: url(../images/football-field-svgrepo-com-cropped.svg);\n    background-repeat: no-repeat;\n    width: 100%;\n    height: 53vh;\n    margin: 50px 0;\n    min-height: 50vh;\n    overflow: hidden;\n\n    @media screen and (min-width: 768px) {\n        width: 60vw;\n        height: 60vh;\n        margin: 50px;\n    }\n\n    @media screen and (min-width: 1024px) {\n        height: 80vh;\n    }\n\n    .formation-grid {\n        display: grid;\n        grid-template-rows: repeat(8, minmax(0, auto));\n        grid-template-columns: repeat(5, minmax(0, auto));\n        padding: 8%;\n        width: 100%;\n        height: 100%;\n        \n\n        // goalkeeping\n\n        [data-formation-position=gk] {\n            grid-row: 8;\n            grid-column: 3;\n        }\n\n\n        // defence\n\n        [data-formation-position=lb] {\n            grid-row: 7;\n            grid-column: 1;\n        }\n\n        [data-formation-position=lcb] {\n            grid-row: 7;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cb] {\n            grid-row: 7;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rcb] {\n            grid-row: 7;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rb] {\n            grid-row: 7;\n            grid-column: 5;\n        }\n\n\n        // midfield\n\n        [data-formation-position=ldm] {\n            grid-row: 6;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cdm] {\n            grid-row: 6;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rdm] {\n            grid-row: 6;\n            grid-column: 4;\n        }\n\n        [data-formation-position=lwb], [data-formation-position=lm] {\n            grid-row: 5;\n            grid-column: 1;\n        }\n\n        [data-formation-position=lcm] {\n            grid-row: 5;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cm] {\n            grid-row: 5;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rcm] {\n            grid-row: 5;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rwb], [data-formation-position=rm] {\n            grid-row: 5;\n            grid-column: 5;\n        }\n\n        [data-formation-position=lw] {\n            grid-row: 4;\n            grid-column: 1;\n        }\n        \n        [data-formation-position=lam] {\n            grid-row: 4;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cam] {\n            grid-row: 4;\n            grid-column: 3;\n        }\n\n        [data-formation-position=ram] {\n            grid-row: 4;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rw] {\n            grid-row: 4;\n            grid-column: 5;\n        }\n\n\n        // attack\n            \n        [data-formation-position=lf] {\n            grid-row: 3;\n            grid-column: 1;\n        }\n\n        [data-formation-position=ls] {\n            grid-row: 3;\n            grid-column: 2;\n        }\n\n        [data-formation-position=cf] {\n            grid-row: 3;\n            grid-column: 3;\n        }\n\n        [data-formation-position=rs] {\n            grid-row: 3;\n            grid-column: 4;\n        }\n\n        [data-formation-position=rf] {\n            grid-row: 3;\n            grid-column: 5;\n        }\n\n    }\n}","@use './index.scss';\n@use './positionMarker.scss';\n@use './infoCard.scss';\n@use './loadingScreen.scss';\n\n* {\n  box-sizing: border-box;\n}\n\n.app {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  overflow: hidden;\n}\n\n.form-group {\n  display: flex;\n  margin: 5% 0;\n}\n\n// @keyframes App-logo-spin {\n//   from {\n//     transform: rotate(0deg);\n//   }\n//   to {\n//     transform: rotate(360deg);\n//   }\n// }\n",".position-marker {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    font-size: 0.8em;\n    align-self: flex-start;\n\n    .circle {\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        font-size: 1rem;\n        border-radius: 9999px;\n        color: white;\n        background-color: lightblue;\n        height: 45px;\n        width: 45px;\n        cursor: pointer;\n\n        .circle .active {\n            border: 4px solid #fff;\n        }\n\n        @media screen and (min-width: 768px) {\n            height: 60px;\n            width: 60px;\n            font-size: 1.5em;\n        }\n\n        @media screen and (min-width: 1024px) {\n            height: 80px;\n            width: 80px;\n            font-size: 2em;\n        }\n\n    }\n\n    .name-tag {\n        background-color: aqua;\n        margin: 5px 0 10px;\n        padding: 1% 6%;\n        min-width: 50%;\n        min-height: 25%;\n        overflow: scroll;\n        border-radius: 15px;\n        text-align: center;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        cursor: pointer;\n    }\n        \n\n    &.filled {\n\n        overflow: hidden;\n \n        .name-tag {\n            max-width: 90%;\n            justify-content: start;\n            font-size: 0.6em;\n            margin-bottom: 0;\n        }\n\n    }\n\n    &:hover, &.active {\n        \n        transform: scale(1.25);\n        transition: scale 5s ease;\n\n        .circle {\n            box-shadow: 0 0 10px #fff;\n            transition: box-shadow 0.5s ease;\n        }\n\n    }\n\n\n}",".info-card-wrapper {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.info-card {\n    background: rgba(0, 0, 0, 0.65);\n    color: #fff;\n    padding: 5%;\n    margin: 0 2%;\n    border-radius: 15px;\n}\n\n.change-formation-form {\n    padding: 5%;\n}\n\n.choose-player-form {\n    padding: 5%;\n}",".overlay {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: rgba(0, 0, 0, 0.85);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    // color: #fff;\n\n    .loading-div {\n        background-color: #fff;\n        min-height: 15%;\n        min-width: 25%;\n        display: grid;\n        border-radius: 15px;\n\n        .loading-wrapper {\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            border: 2px solid #000;\n            border-radius: 15px;\n            margin: 2%;\n            flex-wrap: wrap;\n        }\n    }\n    \n    .loading-svg {\n        margin: 0 5%;\n        animation: rotation 3s infinite linear;\n    }\n}\n\n@keyframes rotation {\n    from {\n      transform: rotate(0deg);\n    }\n    to {\n      transform: rotate(359deg);\n    }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39925,6 +40030,16 @@ module.exports = styleTagTransform;
 
 module.exports = __webpack_require__.p + "football-field-svgrepo-com-cropped.svg";
 
+/***/ }),
+
+/***/ "./src/assets/images/football-svgrepo-com.svg":
+/*!****************************************************!*\
+  !*** ./src/assets/images/football-svgrepo-com.svg ***!
+  \****************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "football-svgrepo-com.svg";
+
 /***/ })
 
 /******/ 	});
@@ -40093,4 +40208,4 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
 
 /******/ })()
 ;
-//# sourceMappingURL=bundlefe82ef00b391eccdbf22.js.map
+//# sourceMappingURL=bundlee9e3dbd23bc5c1e5bdc3.js.map

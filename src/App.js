@@ -1,8 +1,9 @@
 import { parse, differenceInYears } from 'date-fns';
 
 import React from 'react';
-import FootballPitch from './components/FootballPitch'
-import InfoCard from './components/InfoCard'
+import LoadingScreen from './components/LoadingScreen';
+import FootballPitch from './components/FootballPitch';
+import InfoCard from './components/InfoCard';
 
 import Formations from './helpers/formations';
 
@@ -108,6 +109,9 @@ class App extends React.Component {
   }
 
   async fetchTeams(e) {
+
+    this.setState({ loading: true })
+    
     await fetch('/api/league/' + e.target.value + '/teams', {
         mode: 'cors',
       })
@@ -118,9 +122,14 @@ class App extends React.Component {
         })
       })
       .catch(error => console.log(error))
+      .then(() => this.setState({ loading: false }) )
+
   }
 
   async fetchTeamData(e) {
+
+    this.setState({ loading: true })
+
     await fetch('/api/teams/' + e.target.value , {
         mode: 'cors',
       })
@@ -131,6 +140,8 @@ class App extends React.Component {
         })
       })
       .catch(error => console.log(error))
+      .then(() => this.setState({ loading: false }) )
+
   }
 
   playerHasAlreadyBeenSelected(player_id){
@@ -152,11 +163,14 @@ class App extends React.Component {
 
   selectPlayer(team_squad_index) {
 
+    this.setState({ loading: true })
+
     let number = this.state.selectedPosition['squad_number']
 
     let player = this.state.selectedTeam.squad[team_squad_index]
 
-    if( this.playerHasAlreadyBeenSelected(player.id) ) {``
+    if( this.playerHasAlreadyBeenSelected(player.id) ) {
+      this.setState({ loading: false })
       alert("Player has already been selected !");
       return
     }
@@ -177,7 +191,8 @@ class App extends React.Component {
         squad: { ...prevState.squad, [number]: player },
         choosePlayer: false,
         selectedTeam: null,
-        selectedPosition: null
+        selectedPosition: null,
+        loading: false
       })
     )
 
@@ -188,11 +203,14 @@ class App extends React.Component {
       return
     }
 
+    this.setState({ loading: true })
+
     let squad_number = this.state.selectedPosition.squad_number
     this.setState(prevState => ({
         squad: { ...prevState.squad, [squad_number]: null },
         selectedPlayer: null,
-        choosePlayer: true
+        choosePlayer: true,
+        loading: false
       })
     )
   }
@@ -200,6 +218,7 @@ class App extends React.Component {
 
   componentDidMount() {
       this.fetchLeagues()
+        .then(() => this.setState({ loading: false }))
   }
 
 
@@ -208,6 +227,8 @@ class App extends React.Component {
       <div className="app">
 
         Hello
+
+        { this.state.loading && <LoadingScreen /> }
 
         <FootballPitch 
           squad={ this.state.squad }
