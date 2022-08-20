@@ -13,7 +13,7 @@ class PlayerInfo extends React.Component {
                     <p>Age: { this.props.selectedPlayer.age }</p>
                     <hr />
                     
-                    <p>Position: { `${this.props.selectedPosition['squad_number']} ( ${this.props.selectedPosition['formation_position'].toUpperCase()} )` }</p>
+                    <p>Position: { this.props.selectedPosition && `${this.props.selectedPosition['squad_number']} ( ${this.props.selectedPosition['formation_position'].toUpperCase()} )` }</p>
                     <hr />
                     
                     <p>Team:</p>

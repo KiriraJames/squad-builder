@@ -17,9 +17,13 @@ class PositionMarker extends React.Component {
         return (
             <div className={ 'position-marker' + (this.props.isActive ? ' active' : '') + (this.props.player ? ' filled' : '') } data-formation-position={ this.props.formationPosition } onClick={ (e) => this.props.toggleInfoCard( {squad_number:this.props.number, formation_position:this.props.formationPosition}, e ) }>
                 
-                <div className="circle">
+                <div className={ this.props.player ? "player-badge" : "circle" }>
+                    
                     { this.props.number }
-                </div>
+                    
+                    { this.props.player && <img src={this.props.player.team.crest} onError={ (e) => e.target.remove() } /> }
+
+                </div>            
 
                 <div className="name-tag">
                     { this.props.player ? this.getPlayerDisplayName(this.props.player.name) : this.props.formationPosition.toUpperCase() }

@@ -6,21 +6,15 @@
     font-size: 0.8em;
     align-self: flex-start;
 
-    .circle {
+    .circle, .player-badge {
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1rem;
-        border-radius: 9999px;
-        color: white;
-        background-color: lightblue;
         height: 45px;
         width: 45px;
         cursor: pointer;
-
-        .circle .active {
-            border: 4px solid #fff;
-        }
+        position: relative;
 
         @media screen and (min-width: 768px) {
             height: 60px;
@@ -33,7 +27,25 @@
             width: 80px;
             font-size: 2em;
         }
+        
+        img {
+            height: 45px;
+            width: 45px;
+            cursor: pointer;
+            position: absolute;
 
+            @media screen and (min-width: 768px) {
+                height: 60px;
+                width: 60px;
+            }
+        }
+
+    }
+
+    .circle {
+        background-color: lightblue;
+        color: white;
+        border-radius: 9999px;
     }
 
     .name-tag {
