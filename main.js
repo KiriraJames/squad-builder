@@ -47,7 +47,7 @@ app.set('trust proxy', 1);
 
 // caching requests
 let cache = apicache.middleware
-const cacheIfSuccessResponse = cache('5 minutes', (req, res) => res.statusCode === 200 )
+const cacheIfSuccessResponse = cache('1 hour', (req, res) => res.statusCode === 200 )
 
 
 // routes
