@@ -19,12 +19,9 @@ class InfoCard extends React.Component {
 
                     { this.props.choosePlayer && this.props.selectedPosition && <ChoosePlayerForm 
                                                                                     leagues={ this.props.leagues }
-                                                                                    teams={ this.props.teams }
-                                                                                    selectedTeam={ this.props.selectedTeam }
                                                                                     selectedPosition={ this.props.selectedPosition }
-                                                                                    fetchTeams={ this.props.fetchTeams }
-                                                                                    fetchTeamData={ this.props.fetchTeamData }
-                                                                                    selectPlayer={ this.props.selectPlayer } /> }
+                                                                                    addPlayer={ this.props.addPlayer }
+                                                                                    setLoading={ this.props.setLoading } /> }
 
                 </div>
 

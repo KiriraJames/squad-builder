@@ -1,9 +1,81 @@
 import React from "react";
+import { parse, differenceInYears } from 'date-fns';
 
 class ChoosePlayerForm extends React.Component {
     constructor(props) {
+        
         super(props);
+
+        this.state = {
+            teams: [],
+            selectedTeam: null,
+        }
+
         this.selectPlayerRef = React.createRef();
+
+        this.fetchTeams = this.fetchTeams.bind(this)
+        this.fetchTeamData = this.fetchTeamData.bind(this)
+        this.selectPlayer = this.selectPlayer.bind(this)
+
+    }
+    
+    async fetchTeams(e) {
+
+        this.props.setLoading(true)
+        
+        await fetch('/api/league/' + e.target.value + '/teams', {
+            mode: 'cors',
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({
+                    teams: data
+                })
+            })
+            .catch(error => console.log(error))
+            .then(() => this.props.setLoading(false))
+
+    }
+    
+    async fetchTeamData(e) {
+
+        this.props.setLoading(true)
+
+        await fetch('/api/teams/' + e.target.value , {
+            mode: 'cors',
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({
+                    selectedTeam: data
+                })
+            })
+            .catch(error => console.log(error))
+            .then(() => this.props.setLoading(false))
+
+    }
+
+    selectPlayer(selectedTeam_squad_index) {
+
+        if( ! selectedTeam_squad_index ) {
+          return
+        }
+            
+        let player = this.state.selectedTeam.squad[selectedTeam_squad_index]
+    
+        player['age'] = differenceInYears( new Date(), parse(player.dateOfBirth, 'yyyy-MM-dd', new Date()) )
+        player['team'] = {
+          id: this.state.selectedTeam.id,
+          tla: this.state.selectedTeam.tla,
+          shortname: this.state.selectedTeam.shortname,
+          name: this.state.selectedTeam.name,
+          crest: this.state.selectedTeam.crest,
+          area: this.state.selectedTeam.area.name,
+          clubColors: this.state.selectedTeam.clubColors,
+        }
+
+        this.props.addPlayer(player);
+    
     }
 
     render() {
@@ -18,7 +90,7 @@ class ChoosePlayerForm extends React.Component {
 
                 <div>
                     <label>League:</label>
-                    <select name="league" onChange={ this.props.fetchTeams } required>
+                    <select name="league" onChange={ this.fetchTeams } required>
                         
                         <option value=''>Select a league</option>
                         {
@@ -31,16 +103,16 @@ class ChoosePlayerForm extends React.Component {
 
                 <div>
                     <label>Team:</label>
-                    <select name="team" onChange={ this.props.fetchTeamData } required>
+                    <select name="team" onChange={ this.fetchTeamData } required>
 
                         <option value=''>Select a Team</option>
                         {
                             
-                            this.props.teams.length > 1 
+                            this.state.teams.length > 1 
                             
                             &&
                             
-                            this.props.teams.map(team => (
+                            this.state.teams.map(team => (
                                 <option key={ team.id } value={ team.id }>{ team.name }</option>
                             ))
 
@@ -55,11 +127,11 @@ class ChoosePlayerForm extends React.Component {
                         <option value=''>Select a Player</option>
                         {
 
-                            this.props.selectedTeam 
+                            this.state.selectedTeam 
                             
                             &&
                             
-                            this.props.selectedTeam.squad.map((player, index) => (
+                            this.state.selectedTeam.squad.map((player, index) => (
                                 <option key={ player.id } value={ index }>{ player.name }</option>
                             ))
 
@@ -68,7 +140,8 @@ class ChoosePlayerForm extends React.Component {
                 </div>
 
                 <div>
-                    <button type="submit" onClick={ (e) => this.props.selectPlayer(this.selectPlayerRef.current.value, e) }>Save</button>
+                     {/* using refs just for the sake :) */}
+                    <button type="submit" onClick={ (e) => this.selectPlayer(this.selectPlayerRef.current.value, e) }>Save</button>
                 </div>
 
             </div>

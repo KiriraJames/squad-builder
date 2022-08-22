@@ -1,5 +1,3 @@
-import { parse, differenceInYears } from 'date-fns';
-
 import React from 'react';
 import LoadingScreen from './components/LoadingScreen';
 import FootballPitch from './components/FootballPitch';
@@ -19,20 +17,20 @@ class App extends React.Component {
       formation: '4-5-1',
 
       leagues: [],
-      teams: [],
 
       choosePlayer: false,
       selectedPlayer: null,
       selectedPosition: null,
-      selectedTeam: null,
     }
 
+    this.getFormationPositions = this.getFormationPositions.bind(this)
     this.changeFormation = this.changeFormation.bind(this)
-    this.fetchTeams = this.fetchTeams.bind(this)
-    this.fetchTeamData = this.fetchTeamData.bind(this)
     this.toggleInfoCard = this.toggleInfoCard.bind(this)
-    this.selectPlayer = this.selectPlayer.bind(this)
+    this.fetchLeagues = this.fetchLeagues.bind(this)
+    this.playerHasAlreadyBeenSelected = this.playerHasAlreadyBeenSelected.bind(this)
+    this.addPlayer = this.addPlayer.bind(this)
     this.removePlayer = this.removePlayer.bind(this)
+    this.setLoading = this.setLoading.bind(this)
 
   }
 
@@ -108,42 +106,6 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
-  async fetchTeams(e) {
-
-    this.setState({ loading: true })
-    
-    await fetch('/api/league/' + e.target.value + '/teams', {
-        mode: 'cors',
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          teams: data
-        })
-      })
-      .catch(error => console.log(error))
-      .then(() => this.setState({ loading: false }) )
-
-  }
-
-  async fetchTeamData(e) {
-
-    this.setState({ loading: true })
-
-    await fetch('/api/teams/' + e.target.value , {
-        mode: 'cors',
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          selectedTeam: data
-        })
-      })
-      .catch(error => console.log(error))
-      .then(() => this.setState({ loading: false }) )
-
-  }
-
   playerHasAlreadyBeenSelected(player_id){
     let duplicate_player = Object.values(this.state.squad)
                             .filter(already_selected_player => already_selected_player !== null)
@@ -161,40 +123,25 @@ class App extends React.Component {
 
   }
 
-  selectPlayer(team_squad_index) {
+  addPlayer(new_player) {
 
-    if( ! team_squad_index ) {
+    if( ! new_player || Object.keys(new_player).length < 1 ) {
       return
     }
 
     this.setState({ loading: true })
 
-    let number = this.state.selectedPosition['squad_number']
-
-    let player = this.state.selectedTeam.squad[team_squad_index]
-
-    if( this.playerHasAlreadyBeenSelected(player.id) ) {
+    if( this.playerHasAlreadyBeenSelected(new_player.id) ) {
       this.setState({ loading: false })
       alert("Player has already been selected !");
       return
     }
 
-    player['age'] = differenceInYears( new Date(), parse(player.dateOfBirth, 'yyyy-MM-dd', new Date()) )
-    player['team'] = {
-      id: this.state.selectedTeam.id,
-      tla: this.state.selectedTeam.tla,
-      shortname: this.state.selectedTeam.shortname,
-      name: this.state.selectedTeam.name,
-      crest: this.state.selectedTeam.crest,
-      area: this.state.selectedTeam.area.name,
-      clubColors: this.state.selectedTeam.clubColors,
-    }
-
+    let squad_number = this.state.selectedPosition['squad_number']
 
     this.setState(prevState => ({
-        squad: { ...prevState.squad, [number]: player },
+        squad: { ...prevState.squad, [squad_number]: new_player },
         choosePlayer: false,
-        selectedTeam: null,
         selectedPosition: null,
         loading: false
       })
@@ -219,6 +166,17 @@ class App extends React.Component {
     )
   }
 
+  setLoading(toggle){
+
+    if( typeof toggle !== "boolean" ) {
+      return
+    }
+
+    this.setState({
+      loading: toggle
+    })
+
+  }
 
   componentDidMount() {
       this.fetchLeagues()
@@ -244,16 +202,13 @@ class App extends React.Component {
         <InfoCard
           formations={ Formations }
           leagues={ this.state.leagues }
-          teams={ this.state.teams }
           choosePlayer={ this.state.choosePlayer }
           selectedPlayer={ this.state.selectedPlayer }
-          selectedTeam={ this.state.selectedTeam }
           selectedPosition={ this.state.selectedPosition }
           changeFormation={ this.changeFormation }
-          fetchTeams={ this.fetchTeams }
-          fetchTeamData={ this.fetchTeamData }
-          selectPlayer={ this.selectPlayer }
+          addPlayer={ this.addPlayer }
           removePlayer={ this.removePlayer }
+          setLoading={ this.setLoading }
         />
 
       </div>
