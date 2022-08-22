@@ -163,6 +163,10 @@ class App extends React.Component {
 
   selectPlayer(team_squad_index) {
 
+    if( ! team_squad_index ) {
+      return
+    }
+
     this.setState({ loading: true })
 
     let number = this.state.selectedPosition['squad_number']

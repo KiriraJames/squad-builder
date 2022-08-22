@@ -299,6 +299,10 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "selectPlayer",
     value: function selectPlayer(team_squad_index) {
+      if (!team_squad_index) {
+        return;
+      }
+
       this.setState({
         loading: true
       });
@@ -40213,4 +40217,4 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle10aa9f6b3319541f4120.js.map
+//# sourceMappingURL=bundle0b6492306ddf410f4b28.js.map
