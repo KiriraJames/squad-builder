@@ -15,4 +15,4 @@ class LoadingScreen extends React.Component {
     }
 }
 
-export default LoadingScreen;
+export default React.memo(LoadingScreen);

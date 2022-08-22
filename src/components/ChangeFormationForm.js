@@ -32,4 +32,4 @@ class ChangeFormationForm extends React.Component {
     }
 }
 
-export default ChangeFormationForm;
+export default React.memo(ChangeFormationForm);

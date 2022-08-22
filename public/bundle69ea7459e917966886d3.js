@@ -379,7 +379,7 @@ var ChangeFormationForm = /*#__PURE__*/function (_React$Component) {
   return ChangeFormationForm;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChangeFormationForm);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().memo(ChangeFormationForm));
 
 /***/ }),
 
@@ -847,7 +847,7 @@ var LoadingScreen = /*#__PURE__*/function (_React$Component) {
   return LoadingScreen;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoadingScreen);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().memo(LoadingScreen));
 
 /***/ }),
 
@@ -40235,4 +40235,4 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle269df49b80da57865985.js.map
+//# sourceMappingURL=bundle69ea7459e917966886d3.js.map
