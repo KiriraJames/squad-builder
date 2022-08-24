@@ -91,19 +91,7 @@ class App extends React.Component {
         selectedPosition: position
       })
 
-
-      // change background color to player team colors
-      let color_array = selected_player.team.clubColors.split('/')
-
-      // return second word from multi-word color strings e.g. navy blue returns blue
-      color_array = color_array.map(color => {
-        let words_in_color = color.trim().split(' ')
-        return words_in_color.length > 1 ? words_in_color[1].toLowerCase() :  words_in_color[0].toLowerCase()
-      })
-      
-
-      let bg_color = color_array.join(', ');
-      this.appRef.current.style.background = 'linear-gradient(' + bg_color + ')'
+      this.appRef.current.style.background = 'linear-gradient(' + selected_player.team.bgColor + ')' 
             
       
     } else {

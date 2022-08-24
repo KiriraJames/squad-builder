@@ -55,6 +55,23 @@ class ChoosePlayerForm extends React.Component {
 
     }
 
+    getBgColor(clubColors) {
+
+        // format club colors to get color string to set as background gradient on click
+        let colors_array = clubColors.split('/')
+
+        // return the second word from multi-word color names e.g. navy blue returns blue
+        colors_array = colors_array.map(color => {
+            let words_in_color = color.trim().split(' ')
+            return words_in_color.length > 1 ? words_in_color[1].toLowerCase() :  words_in_color[0].toLowerCase()
+        })
+
+        let bg_color = colors_array.join(', ');
+        return bg_color;
+
+    }
+
+
     selectPlayer(selectedTeam_squad_index) {
 
         if( ! selectedTeam_squad_index ) {
@@ -72,6 +89,7 @@ class ChoosePlayerForm extends React.Component {
           crest: this.state.selectedTeam.crest,
           area: this.state.selectedTeam.area.name,
           clubColors: this.state.selectedTeam.clubColors,
+          bgColor: this.getBgColor(this.state.selectedTeam.clubColors)
         }
 
         this.props.addPlayer(player);
