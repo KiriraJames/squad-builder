@@ -23,6 +23,8 @@ class App extends React.Component {
       selectedPosition: null,
     }
 
+    this.appRef = React.createRef();
+
     this.getFormationPositions = this.getFormationPositions.bind(this)
     this.changeFormation = this.changeFormation.bind(this)
     this.toggleInfoCard = this.toggleInfoCard.bind(this)
@@ -58,6 +60,7 @@ class App extends React.Component {
 
   toggleInfoCard(position) {
 
+    // check if clicked position is already currently selected
     if( this.state.selectedPosition !== null ) {
 
       if( position['squad_number'] === this.state.selectedPosition['squad_number'] && position['formation_position'] === this.state.selectedPosition['formation_position'] ) {
@@ -68,6 +71,10 @@ class App extends React.Component {
           selectedPlayer: null
         })
 
+        if( this.appRef.current.style.background ) {
+          this.appRef.current.style.background = null
+        }
+
         return
       }
 
@@ -76,18 +83,39 @@ class App extends React.Component {
 
     if( this.state.squad[ position['squad_number'] ] ) {
 
+      let selected_player = this.state.squad[ position['squad_number'] ]
+
       this.setState({
         choosePlayer: false,
-        selectedPlayer: this.state.squad[ position['squad_number'] ],
+        selectedPlayer: selected_player,
         selectedPosition: position
       })
 
+
+      // change background color to player team colors
+      let color_array = selected_player.team.clubColors.split('/')
+
+      // return second word from multi-word color strings e.g. navy blue returns blue
+      color_array = color_array.map(color => {
+        let words_in_color = color.trim().split(' ')
+        return words_in_color.length > 1 ? words_in_color[1].toLowerCase() :  words_in_color[0].toLowerCase()
+      })
+      
+
+      let bg_color = color_array.join(', ');
+      this.appRef.current.style.background = 'linear-gradient(' + bg_color + ')'
+            
+      
     } else {
 
       this.setState({
         choosePlayer: true,
         selectedPosition: position
       })
+
+      if( this.appRef.current.style.background ) {
+        this.appRef.current.style.background = null
+      }
 
     }
 
@@ -186,7 +214,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app">
+      <div className="app" ref={this.appRef}>
 
         Hello
 

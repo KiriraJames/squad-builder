@@ -92,6 +92,7 @@ var App = /*#__PURE__*/function (_React$Component) {
       selectedPlayer: null,
       selectedPosition: null
     };
+    _this.appRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef();
     _this.getFormationPositions = _this.getFormationPositions.bind(_assertThisInitialized(_this));
     _this.changeFormation = _this.changeFormation.bind(_assertThisInitialized(_this));
     _this.toggleInfoCard = _this.toggleInfoCard.bind(_assertThisInitialized(_this));
@@ -126,6 +127,7 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "toggleInfoCard",
     value: function toggleInfoCard(position) {
+      // check if clicked positionMarker is the same as selectedPositionMarker
       if (this.state.selectedPosition !== null) {
         if (position['squad_number'] === this.state.selectedPosition['squad_number'] && position['formation_position'] === this.state.selectedPosition['formation_position']) {
           this.setState({
@@ -133,21 +135,40 @@ var App = /*#__PURE__*/function (_React$Component) {
             selectedPosition: null,
             selectedPlayer: null
           });
+
+          if (this.appRef.current.style.background) {
+            this.appRef.current.style.background = null;
+          }
+
           return;
         }
       }
 
       if (this.state.squad[position['squad_number']]) {
+        var selected_player = this.state.squad[position['squad_number']];
         this.setState({
           choosePlayer: false,
-          selectedPlayer: this.state.squad[position['squad_number']],
+          selectedPlayer: selected_player,
           selectedPosition: position
+        }); // change background color to player team colors
+
+        var color_array = selected_player.team.clubColors.split('/'); // return second word from multi-word color strings e.g. navy blue returns blue
+
+        color_array = color_array.map(function (color) {
+          var words_in_color = color.trim().split(' ');
+          return words_in_color.length > 1 ? words_in_color[1].toLowerCase() : words_in_color[0].toLowerCase();
         });
+        var bg_color = color_array.join(', ');
+        this.appRef.current.style.background = 'linear-gradient(' + bg_color + ')';
       } else {
         this.setState({
           choosePlayer: true,
           selectedPosition: position
         });
+
+        if (this.appRef.current.style.background) {
+          this.appRef.current.style.background = null;
+        }
       }
     }
   }, {
@@ -280,7 +301,8 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "app"
+        className: "app",
+        ref: this.appRef
       }, "Hello", this.state.loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_LoadingScreen__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_FootballPitch__WEBPACK_IMPORTED_MODULE_2__["default"], {
         squad: this.state.squad,
         selectedPosition: this.state.selectedPosition,
@@ -40235,4 +40257,4 @@ root.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createEle
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle69ea7459e917966886d3.js.map
+//# sourceMappingURL=bundle82a3a3d4e2faf6b2fc3b.js.map
