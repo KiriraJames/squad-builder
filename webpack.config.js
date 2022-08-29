@@ -28,7 +28,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-                test: /\.(png|gif|jpg|jpeg|svg)$/i,
+                test: /\.(png|gif|jpg|jpeg|svg|ico)$/i,
                 type: 'asset/resource'
             }
         ]
@@ -36,7 +36,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'src/index.html'
+            template: 'src/index.html',
+            favicon: 'src/assets/images/football-field-svgrepo-com-cropped.ico'
         })
     ]
 }
