@@ -2,6 +2,7 @@ import React from 'react';
 import LoadingScreen from './components/LoadingScreen';
 import FootballPitch from './components/FootballPitch';
 import InfoCard from './components/InfoCard';
+import Header from './components/Header';
 
 import Formations from './helpers/formations';
 
@@ -204,28 +205,32 @@ class App extends React.Component {
     return (
       <div className="app" ref={this.appRef}>
 
-        Hello
-
         { this.state.loading && <LoadingScreen /> }
 
-        <FootballPitch 
-          squad={ this.state.squad }
-          selectedPosition={ this.state.selectedPosition }
-          formationPositions={ this.getFormationPositions() }
-          toggleInfoCard={ this.toggleInfoCard }
-        />
+        <Header />
 
-        <InfoCard
-          formations={ Formations }
-          leagues={ this.state.leagues }
-          choosePlayer={ this.state.choosePlayer }
-          selectedPlayer={ this.state.selectedPlayer }
-          selectedPosition={ this.state.selectedPosition }
-          changeFormation={ this.changeFormation }
-          addPlayer={ this.addPlayer }
-          removePlayer={ this.removePlayer }
-          setLoading={ this.setLoading }
-        />
+        <div className='content'>
+
+          <FootballPitch 
+            squad={ this.state.squad }
+            selectedPosition={ this.state.selectedPosition }
+            formationPositions={ this.getFormationPositions() }
+            toggleInfoCard={ this.toggleInfoCard }
+          />
+
+          <InfoCard
+            formations={ Formations }
+            leagues={ this.state.leagues }
+            choosePlayer={ this.state.choosePlayer }
+            selectedPlayer={ this.state.selectedPlayer }
+            selectedPosition={ this.state.selectedPosition }
+            changeFormation={ this.changeFormation }
+            addPlayer={ this.addPlayer }
+            removePlayer={ this.removePlayer }
+            setLoading={ this.setLoading }
+          />
+
+        </div>
 
       </div>
     );

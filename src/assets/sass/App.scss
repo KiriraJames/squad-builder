@@ -2,12 +2,19 @@
 @use './positionMarker.scss';
 @use './infoCard.scss';
 @use './loadingScreen.scss';
+@use './header.scss';
 
 * {
   box-sizing: border-box;
 }
 
 .app {
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.content {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
