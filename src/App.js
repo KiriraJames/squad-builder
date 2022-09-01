@@ -3,6 +3,7 @@ import LoadingScreen from './components/LoadingScreen';
 import FootballPitch from './components/FootballPitch';
 import InfoCard from './components/InfoCard';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 import Formations from './helpers/formations';
 
@@ -231,6 +232,8 @@ class App extends React.Component {
           />
 
         </div>
+
+        <Footer />
 
       </div>
     );

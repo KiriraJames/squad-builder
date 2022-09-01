@@ -3,9 +3,14 @@
 @use './infoCard.scss';
 @use './loadingScreen.scss';
 @use './header.scss';
+@use './footer.scss';
 
 * {
   box-sizing: border-box;
+}
+
+body {
+  margin: 0;
 }
 
 .app {
