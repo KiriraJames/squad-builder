@@ -5,6 +5,8 @@
 @use './header.scss';
 @use './footer.scss';
 
+
+
 * {
   box-sizing: border-box;
 }
@@ -17,13 +19,22 @@ body {
   margin: 0;
   width: 100%;
   overflow: hidden;
+
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
 }
 
 .content {
+  
+  flex: 1;
+
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   overflow: hidden;
+  margin: 0 8px;
+
 }
 
 .form-group {

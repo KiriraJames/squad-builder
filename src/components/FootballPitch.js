@@ -25,16 +25,20 @@ class FootballPitch extends React.Component {
 
     render() {
         return (
-            <div className="football-pitch">
-            
-                <div className="formation-grid">
-                { 
+            <div className='football-pitch-wrapper'>
 
-                    this.renderFormation()
+                <div className="football-pitch">
+                
+                    <div className="formation-grid">
+                    { 
 
-                }
+                        this.renderFormation()
+
+                    }
+                    </div>
+
                 </div>
-
+                
             </div>
         )
     }
