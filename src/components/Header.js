@@ -41,11 +41,6 @@ class Header extends React.Component {
                                 <img src={GithubIcon} alt="link to github" /><span className="link-name">Github</span>
                             </a>
                         </div>
-                        <div className="menu-item">
-                            <a href="https://github.com/KiriraJames/squad-builder" target="_blank">
-                                <img src={GithubIcon} alt="link to github" /><span className="link-name">Github</span>
-                            </a>
-                        </div>
                     </nav>
 
                 </div>

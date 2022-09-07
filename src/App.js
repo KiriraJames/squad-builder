@@ -182,6 +182,9 @@ class App extends React.Component {
         loading: false
       })
     )
+
+    this.appRef.current.style.background = null
+
   }
 
   setLoading(toggle){

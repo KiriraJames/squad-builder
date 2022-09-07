@@ -69,7 +69,7 @@
         scrollbar-width: none;  /* Firefox */
 
         .scrolling-text {
-            margin-left: 20%;
+            margin-left: 25%;
             justify-content: start;
             animation: scroll 9s linear infinite;
         }
@@ -117,8 +117,8 @@
     }
 
     50% {
-        -webkit-transform: translateX(-20%);
-        transform: translateX(-20%);
+        -webkit-transform: translateX(-25%);
+        transform: translateX(-25%);
     }
 
     100% {

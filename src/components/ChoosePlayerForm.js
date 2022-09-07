@@ -108,6 +108,7 @@ class ChoosePlayerForm extends React.Component {
 
                 <div>
                     <label>League:</label>
+                    <br />
                     <select name="league" onChange={ this.fetchTeams } required>
                         
                         <option value=''>Select a league</option>
@@ -121,6 +122,7 @@ class ChoosePlayerForm extends React.Component {
 
                 <div>
                     <label>Team:</label>
+                    <br />
                     <select name="team" onChange={ this.fetchTeamData } required>
 
                         <option value=''>Select a Team</option>
@@ -140,6 +142,7 @@ class ChoosePlayerForm extends React.Component {
 
                  <div>
                     <label>Player:</label>
+                    <br />
                     <select name="player" ref={ this.selectPlayerRef } required>
 
                         <option value=''>Select a Player</option>
@@ -158,6 +161,7 @@ class ChoosePlayerForm extends React.Component {
                 </div>
 
                 <div>
+                    <br />
                      {/* using refs just for the sake :) */}
                     <button type="submit" onClick={ (e) => this.selectPlayer(this.selectPlayerRef.current.value, e) }>Save</button>
                 </div>
