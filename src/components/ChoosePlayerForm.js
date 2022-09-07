@@ -71,6 +71,27 @@ class ChoosePlayerForm extends React.Component {
 
     }
 
+    getPlayerDisplayName(full_name) {
+        let names_array = full_name.split(' ');
+        let length_of_names_array = names_array.length
+
+        let display_name = ''
+        let last_name = names_array[length_of_names_array - 1]
+
+        if ( length_of_names_array > 2 ) {
+
+            let second_last_name = names_array[length_of_names_array - 2]
+            display_name = second_last_name + ' ' + last_name;
+
+        } else {
+
+            display_name = last_name;
+
+        }
+        
+        return display_name.toUpperCase();
+    }
+
 
     selectPlayer(selectedTeam_squad_index) {
 
@@ -81,6 +102,7 @@ class ChoosePlayerForm extends React.Component {
         let player = this.state.selectedTeam.squad[selectedTeam_squad_index]
     
         player['age'] = differenceInYears( new Date(), parse(player.dateOfBirth, 'yyyy-MM-dd', new Date()) )
+        player['display_name'] = this.getPlayerDisplayName(player.name)
         player['team'] = {
           id: this.state.selectedTeam.id,
           tla: this.state.selectedTeam.tla,
