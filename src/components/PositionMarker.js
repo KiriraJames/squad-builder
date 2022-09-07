@@ -13,12 +13,22 @@ class PositionMarker extends React.Component {
 
     getPlayerDisplayName(full_name) {
         let names_array = full_name.split(' ');
-        
-        if (names_array[1]) {
-            names_array.shift();
+        let length_of_names_array = names_array.length
+
+        let display_name = ''
+        let last_name = names_array[length_of_names_array - 1]
+
+        if ( length_of_names_array > 2 ) {
+
+            let second_last_name = names_array[length_of_names_array - 2]
+            display_name = second_last_name + ' ' + last_name;
+
+        } else {
+
+            display_name = last_name;
+
         }
         
-        let display_name = names_array.join(' ');
         return display_name.toUpperCase();
     }
 
@@ -60,7 +70,9 @@ class PositionMarker extends React.Component {
                 }
 
                 <div className="name-tag">
-                    { this.props.player ? this.getPlayerDisplayName(this.props.player.name) : this.props.formationPosition.toUpperCase() }
+                    <span className={ ( this.props.player && this.getPlayerDisplayName(this.props.player.name).length > 6 ) ? ' scrolling-text' : '' }>
+                        { this.props.player ? this.getPlayerDisplayName(this.props.player.name) : this.props.formationPosition.toUpperCase() }
+                    </span>
                 </div>
                 
             </div>
