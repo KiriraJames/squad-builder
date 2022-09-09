@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 class ChangeFormationForm extends React.Component {
 
@@ -30,6 +31,15 @@ class ChangeFormationForm extends React.Component {
             </div>
         )
     }
+}
+
+ChangeFormationForm.propTypes = {
+    changeFormation: PropTypes.func.isRequired,
+    formations: PropTypes.object.isRequired
+}
+
+ChangeFormationForm.defaultProps = {
+    formations: []
 }
 
 export default React.memo(ChangeFormationForm);

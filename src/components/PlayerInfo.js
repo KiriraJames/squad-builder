@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class PlayerInfo extends React.Component {
     render() {
@@ -27,6 +28,12 @@ class PlayerInfo extends React.Component {
             </div>
         )
     }
+}
+
+PlayerInfo.propTypes = {
+    selectedPlayer: PropTypes.object.isRequired,
+    selectedPosition: PropTypes.object.isRequired,
+    removePlayer: PropTypes.func
 }
 
 export default PlayerInfo;

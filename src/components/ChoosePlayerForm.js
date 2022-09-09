@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { parse, differenceInYears } from 'date-fns';
 
 class ChoosePlayerForm extends React.Component {
@@ -191,6 +192,17 @@ class ChoosePlayerForm extends React.Component {
             </div>
         )
     }
+}
+
+ChoosePlayerForm.propTypes = {
+    leagues: PropTypes.array.isRequired,
+    selectedPosition: PropTypes.object.isRequired,
+    addPlayer: PropTypes.func.isRequired,
+    setLoading: PropTypes.func,
+}
+
+ChoosePlayerForm.defaultProps = {
+    leagues: []
 }
 
 export default ChoosePlayerForm;

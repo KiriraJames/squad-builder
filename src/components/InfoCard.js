@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import PlayerInfo from './PlayerInfo'
 import ChoosePlayerForm from './ChoosePlayerForm'
 import ChangeFormationForm from './ChangeFormationForm'
@@ -29,6 +30,17 @@ class InfoCard extends React.Component {
             
         )
     }
+}
+
+InfoCard.propTypes = {
+    changeFormation: PropTypes.func.isRequired,
+    formations: PropTypes.object.isRequired,
+    selectedPlayer: PropTypes.object,
+    selectedPosition: PropTypes.object,
+    leagues: PropTypes.array.isRequired,
+    addPlayer: PropTypes.func.isRequired,
+    removePlayer: PropTypes.func,
+    setLoading: PropTypes.func,
 }
 
 export default InfoCard;

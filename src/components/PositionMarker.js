@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class PositionMarker extends React.Component {
     constructor(props) {
@@ -57,6 +58,14 @@ class PositionMarker extends React.Component {
             </div>
         );
     }
+}
+
+PositionMarker.propTypes = {
+    number: PropTypes.number.isRequired,
+    formationPosition: PropTypes.string.isRequired,
+    isActive: PropTypes.bool,
+    player: PropTypes.object,
+    toggleInfoCard: PropTypes.func
 }
 
 export default PositionMarker;
