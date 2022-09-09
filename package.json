@@ -17,7 +17,8 @@
   "scripts": {
     "start": "webpack --mode=development && node './main.js'",
     "build": "webpack --mode=production && node './main.js'",
-    "dev": "concurrently \"webpack watch --mode=development\" \"nodemon './main.js'\""
+    "dev": "concurrently \"webpack watch --mode=development\" \"nodemon './main.js'\"",
+    "compile": "webpack --mode=development"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
