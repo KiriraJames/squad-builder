@@ -16,7 +16,8 @@
   },
   "scripts": {
     "start": "webpack --mode=development && node './main.js'",
-    "build": "webpack --mode=production && node './main.js'",
+    "build": "webpack --mode=production",
+    "serve": "node './main.js'",
     "dev": "concurrently \"webpack watch --mode=development\" \"nodemon './main.js'\"",
     "compile": "webpack --mode=development"
   },
