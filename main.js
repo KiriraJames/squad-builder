@@ -137,3 +137,5 @@ app.get('/api/teams/:teamId', cacheIfSuccessResponse, async(req, res) => {
 
 app.listen(port);
 
+// Export the Express API
+module.exports = app;
